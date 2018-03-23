@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class CadastrarUserActivity extends AppCompatActivity {
 
-//teste committt
+//teste committt2
 
     private EditText nome;
     private EditText pass;
