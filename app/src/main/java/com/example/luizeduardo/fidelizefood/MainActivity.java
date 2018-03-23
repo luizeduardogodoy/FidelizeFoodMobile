@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
-            JSONObject jsonObject = null;
+            JSONObject jsonObject;
 
             try {
                 jsonObject = new JSONObject(s);
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                // Log.w("t", jsonObject.get("nome").toString());
 
                 if(!jsonObject.has("nome")){
-                    Toast.makeText(getBaseContext(),"Usuario ou senha invalidos".toString(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(),"Usuário ou senha inválidos",Toast.LENGTH_LONG).show();
 
                 }else {
 
