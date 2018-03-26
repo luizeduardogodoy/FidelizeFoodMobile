@@ -47,5 +47,10 @@
             android:text="Olá eu sou o cliente"
             />
 
+        <ListView
+            android:id="@+id/listViewCartoes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
 </LinearLayout>
