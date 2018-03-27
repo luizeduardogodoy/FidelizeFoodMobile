@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             String post = "req=login&user=" + txtUser.getText() + "&pass=" + txtSenha.getText();
 
 
-            new LoginTask().execute("http://fidelizefood.azurewebsites.net/public_html/index.php", post);
+            new LoginTask().execute(ConnectAPITask.urlAPI, post);
         }
     }
 

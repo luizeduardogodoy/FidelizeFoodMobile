@@ -104,14 +104,10 @@ public class CadastrarUserActivity extends AppCompatActivity {
             post += "cpf=" + cpfCnpj.getText().toString() + "&";
 
 
-            new CreateUserTask().execute("http://fidelizefood.azurewebsites.net/public_html/index.php", post);
+            new CreateUserTask().execute(ConnectAPITask.urlAPI, post);
         }
 
-
-
     }
-
-
 
     private class CreateUserTask extends ConnectAPITask{
 

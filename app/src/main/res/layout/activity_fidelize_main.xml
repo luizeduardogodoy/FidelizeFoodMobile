@@ -23,8 +23,7 @@
         android:id="@+id/layoutRest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:visibility="visible">
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
@@ -38,7 +37,10 @@
         android:id="@+id/layoutCliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
+
+
+
 
         <TextView
             android:layout_width="match_parent"
@@ -52,5 +54,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="testChamadaAPIListarCampanhas"
+            android:text="Testar Chamada"/>
+
     </LinearLayout>
+
+
 </LinearLayout>

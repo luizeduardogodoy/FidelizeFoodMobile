@@ -3,6 +3,7 @@ package com.example.luizeduardo.fidelizefood;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -31,7 +32,7 @@ public class FidelizeMain extends AppCompatActivity {
 
         String nomeUser = bundle.getString("nomeUser");
 
-        textView.setText(nomeUser + " - tipo " + tipo);
+        textView.setText(nomeUser + " - " + (tipo == 1 ? "Cliente" :  "Restaurante"));
 
         LinearLayout cliente = findViewById(R.id.layoutCliente);
         LinearLayout restaurante = findViewById(R.id.layoutRest);
@@ -48,14 +49,36 @@ public class FidelizeMain extends AppCompatActivity {
             ListView cartoes = findViewById(R.id.listViewCartoes);
             String[] c = new String[]{"Cardamon","Celma","Jabuti"};
 
-            ArrayAdapter<String> adapter =
-                    new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, c);
+            cartoes.setVisibility(View.VISIBLE);
+
+            ArrayAdapter<String> adapter =  new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, c);
 
             cartoes.setAdapter(adapter);
+
+
         }
 
+        String post = "req=listarcampanhaspart";
+
+        new FidelizeMainTask().execute(ConnectAPITask.urlAPI, post);
 
         Toast.makeText(this,nomeUser,Toast.LENGTH_LONG).show();
 
     }
+
+
+    class FidelizeMainTask extends ConnectAPITask{
+
+        public String req = "listarcampanhaspart";
+
+
+    }
+
+    public void testChamadaAPIListarCampanhas(View view){
+
+        String post = "req=listarcampanhaspart";
+
+        new FidelizeMainTask().execute(ConnectAPITask.urlAPI, post);
+    }
+
 }
