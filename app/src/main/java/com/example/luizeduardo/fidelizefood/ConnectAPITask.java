@@ -18,7 +18,7 @@ import java.net.URL;
 public class ConnectAPITask extends AsyncTask<String,Void, String>{
 
     //public static String urlAPI = "http://fidelizefood.azurewebsites.net/public_html/index.php";
-    public static String urlAPI = "http://10.0.2.2/fidelizefood-backend/public_html/index.php";
+    public static String urlAPI = "http://10.0.3.2/index.php";
                                  //  http://softprevirpps/fidelizefood-backend/public_html/
 
     @Override
@@ -34,16 +34,19 @@ public class ConnectAPITask extends AsyncTask<String,Void, String>{
             connection.setDoOutput(true);
             connection.setDoOutput(true);
 
+            //connection.setRequestProperty("Content-Type", "text/plain; charset=utf-8");
+           // connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+
             OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
             writer.write(strings[1]);
             writer.flush();
-
+            writer.close();
+            //connection.connect();
             int statusCode = connection.getResponseCode();
 
             if(statusCode == 200){
 
                 BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-
 
                 String line = null;
 
@@ -58,7 +61,6 @@ public class ConnectAPITask extends AsyncTask<String,Void, String>{
             else{
                 return "API_ERROR";
             }
-
 
 
         } catch (MalformedURLException e) {
@@ -78,7 +80,7 @@ public class ConnectAPITask extends AsyncTask<String,Void, String>{
 
 
 
-
+        //Log.e("s",s);
         // JSONObject object = null;
 
         // JSONArray array = object

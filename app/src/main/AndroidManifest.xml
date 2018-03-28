@@ -23,7 +23,8 @@
             android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".FidelizeMain" />
-        <activity android:name=".CadastrarUserActivity"></activity>
+        <activity android:name=".CadastrarUserActivity" />
+        <activity android:name=".CampanhaPartItemActivity"></activity>
     </application>
 
 </manifest>

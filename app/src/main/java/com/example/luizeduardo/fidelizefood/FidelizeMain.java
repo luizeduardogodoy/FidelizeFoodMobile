@@ -6,14 +6,25 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class FidelizeMain extends AppCompatActivity {
+
+    ListView cartoes;
+    ArrayAdapter<String> cartoesAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +33,10 @@ public class FidelizeMain extends AppCompatActivity {
 
         TextView textView = findViewById(R.id.textView6);
 
-      //  SharedPreferences sharedPreferences = this.getSharedPreferences("InfoUser", Context.MODE_PRIVATE);
-
         SharedPreferences sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
         int tipo = sharedPreferences.getInt("tipo",1);
+        int id = sharedPreferences.getInt("id", 1);
+
         Intent intent = getIntent();
 
         Bundle bundle = intent.getExtras();
@@ -46,37 +57,86 @@ public class FidelizeMain extends AppCompatActivity {
         else{
             cliente.setVisibility(View.VISIBLE);
 
-            ListView cartoes = findViewById(R.id.listViewCartoes);
-            String[] c = new String[]{"Cardamon","Celma","Jabuti"};
+            this.cartoes = findViewById(R.id.listViewCartoes);
 
-            cartoes.setVisibility(View.VISIBLE);
+            this.cartoes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-            ArrayAdapter<String> adapter =  new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, c);
+                    String str = (String) cartoes.getItemAtPosition(i);
 
-            cartoes.setAdapter(adapter);
+                    Log.w("aa",adapterView.getAdapter().getItem(i).toString());
 
+
+                    Intent campPartItem = new Intent(getBaseContext(), CampanhaPartItemActivity.class);
+
+                    Bundle bundle1 = new Bundle();
+                    bundle1.putString("restaurante", str);
+
+                    campPartItem.putExtras(bundle1);
+
+                    startActivity(campPartItem);
+
+                    Toast.makeText(getBaseContext(),str,Toast.LENGTH_SHORT).show();
+                }
+            });
+
+
+            //String[] c = new String[]{"Cardamon","Celma","Jabuti"};
+
+            //cartoes.setVisibility(View.VISIBLE);
+
+            //cartoesAdapter =  new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, c);
+
+           // cartoes.setAdapter(cartoesAdapter);
+
+            String post = "req=listarcampanhaspart&ID_USER="+id;
+
+            new FidelizeMainTask().execute(ConnectAPITask.urlAPI, post);
 
         }
-
-        String post = "req=listarcampanhaspart";
-
-        new FidelizeMainTask().execute(ConnectAPITask.urlAPI, post);
-
-        Toast.makeText(this,nomeUser,Toast.LENGTH_LONG).show();
-
     }
-
 
     class FidelizeMainTask extends ConnectAPITask{
 
-        public String req = "listarcampanhaspart";
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
 
+            JSONObject json = null;
+            try {
+                json = new JSONObject(s);
 
+                JSONArray array = json.getJSONArray("registros");
+
+                String[] res = new String[array.length()];
+
+                for (int i=0; i<array.length(); i++) {
+                    JSONObject news = array.getJSONObject(i);
+                    String name = news.getString("nomeRestaurante");
+
+                    Log.w("nomeRestaurante", name);
+
+                    res[i] = name;
+                }
+
+                cartoesAdapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_list_item_1, res);
+
+                cartoes.setAdapter(cartoesAdapter);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void testChamadaAPIListarCampanhas(View view){
 
-        String post = "req=listarcampanhaspart";
+        SharedPreferences sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
+        int tipo = sharedPreferences.getInt("tipo",1);
+        int id = sharedPreferences.getInt("id", 1);
+
+        String post = "req=listarcampanhaspart&ID_USER="+id;
 
         new FidelizeMainTask().execute(ConnectAPITask.urlAPI, post);
     }

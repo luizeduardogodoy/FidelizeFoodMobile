@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    protected void abrirFidelizeMain(String nome, int tipo){
+    protected void abrirFidelizeMain(String nome, int tipo, int id){
 
 
         Intent intent = new Intent(this, FidelizeMain.class);
@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("ultimoUserLogado", nome);
         editor.putInt("tipo", tipo);
+        editor.putInt("id", id);
 
         editor.apply();
 
@@ -135,8 +136,7 @@ public class MainActivity extends AppCompatActivity {
 
                     //Toast.makeText(getBaseContext(), jsonObject.get("nome").toString(), Toast.LENGTH_LONG).show();
 
-
-                    abrirFidelizeMain(jsonObject.get("nome").toString(), jsonObject.getInt("tipo"));
+                    abrirFidelizeMain(jsonObject.get("nome").toString(), jsonObject.getInt("tipo"),jsonObject.getInt("id"));
                 }
 
             } catch (JSONException e) {
