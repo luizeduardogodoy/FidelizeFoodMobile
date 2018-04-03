@@ -1,5 +1,6 @@
 package com.example.luizeduardo.fidelizefood;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,10 +21,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class FidelizeMain extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class FidelizeMain extends Activity {
 
     ListView cartoes;
-    ArrayAdapter<String> cartoesAdapter;
+    ArrayAdapter<CampanhaParticipante> cartoesAdapter;
 
 
     @Override
@@ -63,32 +66,25 @@ public class FidelizeMain extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                    String str = (String) cartoes.getItemAtPosition(i);
+                    CampanhaParticipante campPart = (CampanhaParticipante) cartoes.getItemAtPosition(i);
 
-                    Log.w("aa",adapterView.getAdapter().getItem(i).toString());
-
+                    //Log.w("aa",adapterView.getAdapter().getItem(i).toString());
 
                     Intent campPartItem = new Intent(getBaseContext(), CampanhaPartItemActivity.class);
 
-                    Bundle bundle1 = new Bundle();
-                    bundle1.putString("restaurante", str);
+                    Bundle bCamPart = new Bundle();
+                    bCamPart.putString("nomeRestaurante", campPart.getNomeRestaurante());
+                    bCamPart.putInt("idUsuarioCampanha", campPart.getIdUsuarioCampanha());
 
-                    campPartItem.putExtras(bundle1);
+                    campPartItem.putExtras(bCamPart);
 
                     startActivity(campPartItem);
 
-                    Toast.makeText(getBaseContext(),str,Toast.LENGTH_SHORT).show();
                 }
             });
 
 
-            //String[] c = new String[]{"Cardamon","Celma","Jabuti"};
 
-            //cartoes.setVisibility(View.VISIBLE);
-
-            //cartoesAdapter =  new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, c);
-
-           // cartoes.setAdapter(cartoesAdapter);
 
             String post = "req=listarcampanhaspart&ID_USER="+id;
 
@@ -111,16 +107,27 @@ public class FidelizeMain extends AppCompatActivity {
 
                 String[] res = new String[array.length()];
 
+
+                ArrayList<CampanhaParticipante> campanhaParticipantes = new ArrayList<CampanhaParticipante>();
+
                 for (int i=0; i<array.length(); i++) {
                     JSONObject news = array.getJSONObject(i);
                     String name = news.getString("nomeRestaurante");
 
+                    CampanhaParticipante c = new CampanhaParticipante();
+                    c.setIdUsuarioCampanha(news.getInt("idusuariocampanha"));
+                    c.setNomeRestaurante(name);
+
                     Log.w("nomeRestaurante", name);
+
+                    campanhaParticipantes.add(c);
 
                     res[i] = name;
                 }
 
-                cartoesAdapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_list_item_1, res);
+                cartoesAdapter = new ArrayAdapter<CampanhaParticipante>(getBaseContext(),
+                        android.R.layout.simple_list_item_1,
+                        campanhaParticipantes);
 
                 cartoes.setAdapter(cartoesAdapter);
 

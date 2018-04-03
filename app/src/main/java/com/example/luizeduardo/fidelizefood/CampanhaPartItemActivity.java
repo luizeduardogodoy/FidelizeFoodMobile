@@ -16,12 +16,12 @@ public class CampanhaPartItemActivity extends AppCompatActivity {
 
         Bundle bundle = intent.getExtras();
 
-        String nomeRest = bundle.getString("restaurante");
-
+        String nomeRest = bundle.getString("nomeRestaurante");
+        int idUsuarioCampanha = bundle.getInt("idUsuarioCampanha");
 
         TextView txtNomeRest = findViewById(R.id.txtNomeRest);
 
-        txtNomeRest.setText(nomeRest);
+        txtNomeRest.setText(nomeRest + "- ID: " + idUsuarioCampanha);
 
     }
 }

@@ -25,14 +25,14 @@
 
         <RadioButton
             android:id="@+id/radioRest"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
             android:text="Restaurante" />
 
         <RadioButton
             android:id="@+id/radioCliente"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
 
