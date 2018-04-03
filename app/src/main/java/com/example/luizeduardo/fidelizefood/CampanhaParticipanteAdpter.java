@@ -2,7 +2,12 @@ package com.example.luizeduardo.fidelizefood;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -12,13 +17,31 @@ import java.util.ArrayList;
 
 public class CampanhaParticipanteAdpter extends ArrayAdapter<CampanhaParticipante> {
 
+    Context context;
+    private ArrayList<CampanhaParticipante> campanhaParticipantes;
 
-    public CampanhaParticipanteAdpter(@NonNull Context context, int resource, ArrayList<CampanhaParticipante> campanhaParticipantes) {
-        super(context, resource, campanhaParticipantes);
+    public CampanhaParticipanteAdpter(@NonNull Context context,  ArrayList<CampanhaParticipante> campanhaParticipantes) {
+        super(context, R.layout.campanha_participante, campanhaParticipantes);
+        this.context = context;
+        this.campanhaParticipantes = campanhaParticipantes;
     }
 
 
+    @NonNull
+    @Override
+    public View getView(int pos, @Nullable View convertView, @NonNull ViewGroup parent) {
+        //return super.getView(position, convertView, parent);
 
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
+        View rowView = inflater.inflate(R.layout.campanha_participante, parent, false);
 
+        TextView nomeRest = rowView.findViewById(R.id.campItemNomeRest);
+        TextView label = rowView.findViewById(R.id.campItemLabel);
+
+        nomeRest.setText(campanhaParticipantes.get(pos).getNomeRestaurante());
+        label.setText(campanhaParticipantes.get(pos).getCarimbo() + " de " + campanhaParticipantes.get(pos).getQtde());
+
+        return rowView;
+    }
 }

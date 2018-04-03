@@ -23,11 +23,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class FidelizeMain extends Activity {
+public class FidelizeMain extends AppCompatActivity {
 
     ListView cartoes;
     ArrayAdapter<CampanhaParticipante> cartoesAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +42,7 @@ public class FidelizeMain extends Activity {
         Intent intent = getIntent();
 
         Bundle bundle = intent.getExtras();
-
         String nomeUser = bundle.getString("nomeUser");
-
         textView.setText(nomeUser + " - " + (tipo == 1 ? "Cliente" :  "Restaurante"));
 
         LinearLayout cliente = findViewById(R.id.layoutCliente);
@@ -66,30 +63,23 @@ public class FidelizeMain extends Activity {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                    CampanhaParticipante campPart = (CampanhaParticipante) cartoes.getItemAtPosition(i);
+                CampanhaParticipante campPart = (CampanhaParticipante) cartoes.getItemAtPosition(i);
 
-                    //Log.w("aa",adapterView.getAdapter().getItem(i).toString());
+                Intent campPartItem = new Intent(getBaseContext(), CampanhaPartItemActivity.class);
 
-                    Intent campPartItem = new Intent(getBaseContext(), CampanhaPartItemActivity.class);
+                Bundle bCamPart = new Bundle();
+                bCamPart.putString("nomeRestaurante", campPart.getNomeRestaurante());
+                bCamPart.putInt("idUsuarioCampanha", campPart.getIdUsuarioCampanha());
 
-                    Bundle bCamPart = new Bundle();
-                    bCamPart.putString("nomeRestaurante", campPart.getNomeRestaurante());
-                    bCamPart.putInt("idUsuarioCampanha", campPart.getIdUsuarioCampanha());
+                campPartItem.putExtras(bCamPart);
 
-                    campPartItem.putExtras(bCamPart);
-
-                    startActivity(campPartItem);
-
+                startActivity(campPartItem);
                 }
             });
-
-
-
 
             String post = "req=listarcampanhaspart&ID_USER="+id;
 
             new FidelizeMainTask().execute(ConnectAPITask.urlAPI, post);
-
         }
     }
 
@@ -107,27 +97,21 @@ public class FidelizeMain extends Activity {
 
                 String[] res = new String[array.length()];
 
-
                 ArrayList<CampanhaParticipante> campanhaParticipantes = new ArrayList<CampanhaParticipante>();
 
                 for (int i=0; i<array.length(); i++) {
                     JSONObject news = array.getJSONObject(i);
-                    String name = news.getString("nomeRestaurante");
 
                     CampanhaParticipante c = new CampanhaParticipante();
                     c.setIdUsuarioCampanha(news.getInt("idusuariocampanha"));
-                    c.setNomeRestaurante(name);
-
-                    Log.w("nomeRestaurante", name);
+                    c.setNomeRestaurante( news.getString("nomeRestaurante"));
+                    c.setCarimbo(news.getInt("refeicoes"));
+                    c.setQtde(news.getInt("qtde"));
 
                     campanhaParticipantes.add(c);
-
-                    res[i] = name;
                 }
 
-                cartoesAdapter = new ArrayAdapter<CampanhaParticipante>(getBaseContext(),
-                        android.R.layout.simple_list_item_1,
-                        campanhaParticipantes);
+                cartoesAdapter = new CampanhaParticipanteAdpter(getBaseContext(), campanhaParticipantes);
 
                 cartoes.setAdapter(cartoesAdapter);
 

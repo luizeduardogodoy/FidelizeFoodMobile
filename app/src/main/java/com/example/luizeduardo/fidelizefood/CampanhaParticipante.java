@@ -8,6 +8,8 @@ public class CampanhaParticipante {
 
     private Integer idUsuarioCampanha;
     private String nomeRestaurante;
+    private Integer qtde;
+    private Integer carimbo;
 
     public Integer getIdUsuarioCampanha() {
         return idUsuarioCampanha;
@@ -25,8 +27,24 @@ public class CampanhaParticipante {
         this.nomeRestaurante = nomeRestaurante;
     }
 
+    public Integer getQtde() {
+        return qtde;
+    }
+
+    public void setQtde(Integer qtde) {
+        this.qtde = qtde;
+    }
+
+    public Integer getCarimbo() {
+        return carimbo;
+    }
+
+    public void setCarimbo(Integer carimbo) {
+        this.carimbo = carimbo;
+    }
+
     @Override
     public String toString() {
-        return nomeRestaurante;
+        return nomeRestaurante + ": " + carimbo + " de " + qtde ;
     }
 }
