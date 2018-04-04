@@ -7,10 +7,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.concurrent.ExecutionException;
 
 public class CadastrarUserActivity extends AppCompatActivity {
-
-//teste committt2
 
     private EditText nome;
     private EditText pass;
@@ -28,7 +30,7 @@ public class CadastrarUserActivity extends AppCompatActivity {
         radioCliente= findViewById(R.id.radioCliente);
         radioRest = findViewById(R.id.radioRest);
 
-        this.nome = findViewById(R.id.txtCadNome);
+        nome = findViewById(R.id.txtCadNome);
         pass = findViewById(R.id.txtCadSenha);
         cpfCnpj = findViewById(R.id.txtCadCpfCnpj);
         email = findViewById(R.id.txtCadEmail);
@@ -44,16 +46,12 @@ public class CadastrarUserActivity extends AppCompatActivity {
                 cpfCnpj.setHint("CPF");
 
                 tipo = 2;
-
-
-
             }
         });
 
         radioRest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
 
             radioCliente.setChecked(false);
 
@@ -67,14 +65,22 @@ public class CadastrarUserActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View view, boolean b) {
                 if(!b) {
-                    if (email.getText().toString().equals("luiz@actuary.com.br")) {
-                        Toast.makeText(view.getContext(), "EMAIL JÁ EXISTENTE!!", Toast.LENGTH_LONG).show();
-                        email.setText("");
-                        email.setHint("Email");
 
-                        //new ConnectAPITask().execute("http://verificaemail");
+                    String e = email.getText().toString();
 
+                    try {
+                        String s = new CreateUserTask().execute(ConnectAPITask.urlAPI, "req=verificaemail&email=" + e).get();
+
+                        Log.e("s",s);
+
+                        email.setText(s);
+
+                    } catch (InterruptedException e1) {
+                        e1.printStackTrace();
+                    } catch (ExecutionException e1) {
+                        e1.printStackTrace();
                     }
+
                 }
 
             }
@@ -102,7 +108,6 @@ public class CadastrarUserActivity extends AppCompatActivity {
             post += "email=" + email.getText().toString() + "&";
             post += "cpf=" + cpfCnpj.getText().toString() + "&";
 
-
             new CreateUserTask().execute(ConnectAPITask.urlAPI, post);
         }
 
@@ -119,8 +124,25 @@ public class CadastrarUserActivity extends AppCompatActivity {
                 Toast.makeText(getBaseContext(),"Houve um problema com a conexão", Toast.LENGTH_SHORT).show();
             }
             else {
-
+                Toast.makeText(getBaseContext(), s, Toast.LENGTH_SHORT).show();
                 Log.w("userCreated", s);
+
+                JSONObject jsonObject = null;
+
+                try {
+                    jsonObject = new JSONObject(s);
+
+                    String s1 = jsonObject.get("jaExiste").toString();
+
+                    if(s1.equals("sim")){
+                        Toast.makeText(getBaseContext(), "EMAIL JÁ EXISTENTE!!", Toast.LENGTH_LONG).show();
+
+                        email.setText("");
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
