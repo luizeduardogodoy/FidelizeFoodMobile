@@ -1,5 +1,7 @@
 package com.example.luizeduardo.fidelizefood;
 
+import android.graphics.Color;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,9 +12,8 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.concurrent.ExecutionException;
 
-public class CadastrarUserActivity extends AppCompatActivity {
+public class CadastrarUserActivity extends AppCompatActivity implements onTaskCompletion{
 
     private EditText nome;
     private EditText pass;
@@ -68,21 +69,8 @@ public class CadastrarUserActivity extends AppCompatActivity {
 
                     String e = email.getText().toString();
 
-                    try {
-                        String s = new CreateUserTask().execute(ConnectAPITask.urlAPI, "req=verificaemail&email=" + e).get();
-
-                        Log.e("s",s);
-
-                        email.setText(s);
-
-                    } catch (InterruptedException e1) {
-                        e1.printStackTrace();
-                    } catch (ExecutionException e1) {
-                        e1.printStackTrace();
-                    }
-
+                    new CreateUserTask().execute(ConnectAPITask.urlAPI, "req=verificaemail&email=" + e);
                 }
-
             }
         });
 
@@ -113,6 +101,45 @@ public class CadastrarUserActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onTaskCompleted(String value) {
+
+        if(value.equals("sim")) {
+
+            Toast.makeText(getBaseContext(), "EMAIL JÁ EXISTENTE!!", Toast.LENGTH_LONG).show();
+            email.requestFocus();
+            email.setText("O email informado já existe");
+            email.setTextColor(Color.RED);
+
+            AsyncTask<String, Void, String> thread = new AsyncTask<String, Void, String>(){
+                @Override
+                protected String doInBackground(String... strings) {
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    return "";
+                }
+                @Override
+                protected void onPostExecute(String s) {
+                    email.setTextColor(Color.BLACK);
+                    email.setText("");
+
+                }
+            };
+
+            thread.execute();
+
+
+
+        }
+    }
+
+
+
+
     private class CreateUserTask extends ConnectAPITask{
 
         @Override
@@ -124,7 +151,7 @@ public class CadastrarUserActivity extends AppCompatActivity {
                 Toast.makeText(getBaseContext(),"Houve um problema com a conexão", Toast.LENGTH_SHORT).show();
             }
             else {
-                Toast.makeText(getBaseContext(), s, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getBaseContext(), s, Toast.LENGTH_SHORT).show();
                 Log.w("userCreated", s);
 
                 JSONObject jsonObject = null;
@@ -134,17 +161,16 @@ public class CadastrarUserActivity extends AppCompatActivity {
 
                     String s1 = jsonObject.get("jaExiste").toString();
 
-                    if(s1.equals("sim")){
-                        Toast.makeText(getBaseContext(), "EMAIL JÁ EXISTENTE!!", Toast.LENGTH_LONG).show();
+                    onTaskCompleted(s1);
 
-                        email.setText("");
 
-                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         }
+
+
     }
 
 
