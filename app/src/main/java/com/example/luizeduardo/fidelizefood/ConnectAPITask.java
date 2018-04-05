@@ -17,8 +17,8 @@ import java.net.URL;
 
 public class ConnectAPITask extends AsyncTask<String,Void, String>{
 
-    public static String urlAPI = "http://fidelizefood.azurewebsites.net/public_html/index.php";
-    //public static String urlAPI = "http://10.0.3.2/index.php";
+    //public static String urlAPI = "http://fidelizefood.azurewebsites.net/public_html/index.php";
+    public static String urlAPI = "http://10.0.3.2/index.php";
                                  //  http://softprevirpps/fidelizefood-backend/public_html/
 
     @Override
@@ -77,14 +77,6 @@ public class ConnectAPITask extends AsyncTask<String,Void, String>{
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-
-
-
-        //Log.e("s",s);
-        // JSONObject object = null;
-
-        // JSONArray array = object
-
 
     }
 }

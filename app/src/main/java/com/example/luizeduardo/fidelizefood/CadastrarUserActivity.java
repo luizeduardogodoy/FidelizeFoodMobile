@@ -5,7 +5,9 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
@@ -23,6 +25,7 @@ public class CadastrarUserActivity extends AppCompatActivity implements onTaskCo
     private Integer tipo;
     private RadioButton radioCliente;
     private RadioButton radioRest;
+    Button btnCreateUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,17 +33,18 @@ public class CadastrarUserActivity extends AppCompatActivity implements onTaskCo
         setContentView(R.layout.activity_cadastrar_user);
         radioCliente= findViewById(R.id.radioCliente);
         radioRest = findViewById(R.id.radioRest);
-
         nome = findViewById(R.id.txtCadNome);
         pass = findViewById(R.id.txtCadSenha);
         cpfCnpj = findViewById(R.id.txtCadCpfCnpj);
         email = findViewById(R.id.txtCadEmail);
         fone = findViewById(R.id.txtCadFone);
 
+        btnCreateUser = findViewById(R.id.btnCreateUser);
+        btnCreateUser.setEnabled(false);
+
         radioCliente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
 
                 radioRest.setChecked(false);
 
@@ -54,10 +58,10 @@ public class CadastrarUserActivity extends AppCompatActivity implements onTaskCo
             @Override
             public void onClick(View view) {
 
-            radioCliente.setChecked(false);
+                radioCliente.setChecked(false);
 
-            cpfCnpj.setHint("CNPJ");
-            tipo = 1;
+                cpfCnpj.setHint("CNPJ");
+                tipo = 1;
 
             }
         });
@@ -69,10 +73,27 @@ public class CadastrarUserActivity extends AppCompatActivity implements onTaskCo
 
                     String e = email.getText().toString();
 
-                    new CreateUserTask().execute(ConnectAPITask.urlAPI, "req=verificaemail&email=" + e);
+                    if(!e.equals(""))
+                        new CreateUserTask().execute(ConnectAPITask.urlAPI, "req=verificaemail&email=" + e);
+
+                }
+                else{
+                    email.setText("");
+                    btnCreateUser.setEnabled(false);
                 }
             }
+
         });
+
+       /* email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(view.getContext(), "email clicado", Toast.LENGTH_LONG).show();
+
+
+            }
+        });*/
 
     }
 
@@ -110,6 +131,7 @@ public class CadastrarUserActivity extends AppCompatActivity implements onTaskCo
             email.requestFocus();
             email.setText("O email informado já existe");
             email.setTextColor(Color.RED);
+            btnCreateUser.setEnabled(false);
 
             AsyncTask<String, Void, String> thread = new AsyncTask<String, Void, String>(){
                 @Override
@@ -130,15 +152,13 @@ public class CadastrarUserActivity extends AppCompatActivity implements onTaskCo
                 }
             };
 
+            //executa a animação para aletar ao usuário que o email já existe
             thread.execute();
-
-
-
+        }
+        else{
+            btnCreateUser.setEnabled(true);
         }
     }
-
-
-
 
     private class CreateUserTask extends ConnectAPITask{
 
@@ -162,7 +182,6 @@ public class CadastrarUserActivity extends AppCompatActivity implements onTaskCo
                     String s1 = jsonObject.get("jaExiste").toString();
 
                     onTaskCompleted(s1);
-
 
                 } catch (JSONException e) {
                     e.printStackTrace();

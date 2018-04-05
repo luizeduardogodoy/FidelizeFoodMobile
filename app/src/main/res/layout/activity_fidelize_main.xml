@@ -31,6 +31,19 @@
 
             android:text="Olá eu sou o restaurante" />
 
+        <Button android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Campanhas" />
+
+        <Button android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Carimbo" />
+
+        <Button android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Clientes" />
+
+
     </LinearLayout>
 
     <LinearLayout
@@ -39,15 +52,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:text="Olá eu sou o cliente"
-            />
 
         <ListView
             android:id="@+id/listViewCartoes"
