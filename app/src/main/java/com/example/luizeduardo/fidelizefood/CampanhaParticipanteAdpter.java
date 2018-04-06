@@ -30,7 +30,6 @@ public class CampanhaParticipanteAdpter extends ArrayAdapter<CampanhaParticipant
     @NonNull
     @Override
     public View getView(int pos, @Nullable View convertView, @NonNull ViewGroup parent) {
-        //return super.getView(position, convertView, parent);
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
