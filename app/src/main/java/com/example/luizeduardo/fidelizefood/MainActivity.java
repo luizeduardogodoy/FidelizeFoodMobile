@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent cad = new Intent(getBaseContext(), CadastrarUserActivity.class);
 
-                getBaseContext().startActivity(cad);
+                startActivity(cad);
 
             }
         });
