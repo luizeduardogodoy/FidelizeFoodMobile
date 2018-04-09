@@ -23,6 +23,7 @@
         android:id="@+id/layoutRest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="vertical">
 
         <TextView
@@ -32,20 +33,26 @@
             android:text="Olá eu sou o restaurante" />
 
         <Button
-            android:id="@+id/btnCampanhas"
-            android:layout_width="match_parent"
+            android:id="@+id/btnRestaurante"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="Campanhas" />
+            android:text="Dados Restaurante" />
+
+        <Button
+            android:id="@+id/btnCampanhas"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Campanha" />
 
         <Button
             android:id="@+id/btnCarimbo"
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="Carimbo" />
 
         <Button
             android:id="@+id/btnClientes"
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="Clientes" />
 

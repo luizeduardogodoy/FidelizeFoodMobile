@@ -50,7 +50,7 @@ public class CadastrarUserActivity extends AppCompatActivity implements onTaskCo
 
                 cpfCnpj.setHint("CPF");
 
-                tipo = 2;
+                tipo = 1;
             }
         });
 
@@ -61,7 +61,7 @@ public class CadastrarUserActivity extends AppCompatActivity implements onTaskCo
                 radioCliente.setChecked(false);
 
                 cpfCnpj.setHint("CNPJ");
-                tipo = 1;
+                tipo = 2;
 
             }
         });
@@ -116,7 +116,7 @@ public class CadastrarUserActivity extends AppCompatActivity implements onTaskCo
             post += "tipo=" + tipo + "&";
             post += "email=" + email.getText().toString() + "&";
             post += "cpf=" + cpfCnpj.getText().toString() + "&";
-
+            Log.w("post", post);
             new CreateUserTask().execute(ConnectAPITask.urlAPI, post);
         }
 

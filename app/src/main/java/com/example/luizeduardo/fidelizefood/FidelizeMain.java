@@ -58,6 +58,17 @@ public class FidelizeMain extends AppCompatActivity {
             Button btnCliente = findViewById(R.id.btnClientes);
             Button btnCarimbo = findViewById(R.id.btnCarimbo);
             Button btnCampanhas = findViewById(R.id.btnCampanhas);
+            Button btnRestaurante = findViewById(R.id.btnRestaurante);
+
+            btnRestaurante.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent intent = new Intent(FidelizeMain.this, RestauranteActivity.class);
+                    startActivity(intent);
+
+                }
+            });
 
             btnCarimbo.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -84,9 +95,7 @@ public class FidelizeMain extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
-
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(FidelizeMain.this );
-
 
                     alertDialog.setTitle("Teste");
 
@@ -96,7 +105,6 @@ public class FidelizeMain extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             Toast.makeText(FidelizeMain.this, "Pressionado nao", Toast.LENGTH_SHORT).show();
-
 
                         }
                     });
@@ -111,12 +119,10 @@ public class FidelizeMain extends AppCompatActivity {
 
                     alertDialog.show();
 
-
-
-
-
                 }
             });
+
+
 
 
         }

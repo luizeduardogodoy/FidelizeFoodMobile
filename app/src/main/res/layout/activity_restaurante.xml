@@ -1,66 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context="com.example.luizeduardo.fidelizefood.CampanhaActivity">
+    tools:context="com.example.luizeduardo.fidelizefood.RestauranteActivity">
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/labelCadastroRest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="10dp"
-        android:text="Cadastro da Campanha de Fidelidade"
+        android:text="Cadastro do Restaurante"
         android:textSize="19dp"
         android:gravity="center"/>
 
     <EditText
-        android:id="@+id/editNomeCampanha"
+        android:id="@+id/editNomeRest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Nome"
         android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/editInicioCampanha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Início"
-        android:inputType="date" />
 
-    <EditText
-        android:id="@+id/editTerminoCampanha"
+    <LinearLayout android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Término"
-        android:inputType="date" />
-
+        android:orientation="horizontal">
     <EditText
-        android:id="@+id/editQtdeCamapanha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Quantidade"
-        android:inputType="number" />
-
-    <EditText
-        android:id="@+id/editObsCampanha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Observação"
-        android:inputType="textMultiLine" />
-
-    <Button
-        android:id="@+id/btnSalvarCampanha"
+        android:id="@+id/editCidadeRest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:ems="10"
+        android:hint="Cidade"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/editEstadoRest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Estado"
+        android:inputType="textPersonName" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editEndRest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Endereço"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/editFoneRest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Telefone"
+        android:inputType="phone" />
+
+    <Button
+        android:id="@+id/btnSalvarRest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:onClick="btnSalvar"
         android:text="Salvar" />
 </LinearLayout>
