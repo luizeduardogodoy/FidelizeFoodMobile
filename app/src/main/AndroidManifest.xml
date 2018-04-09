@@ -26,7 +26,8 @@
         <activity android:name=".CadastrarUserActivity" />
         <activity android:name=".CampanhaPartItemActivity" />
         <activity android:name=".CampanhaActivity" />
-        <activity android:name=".CarimboActivity"></activity>
+        <activity android:name=".CarimboActivity" />
+        <activity android:name=".RestauranteActivity"></activity>
     </application>
 
 </manifest>
