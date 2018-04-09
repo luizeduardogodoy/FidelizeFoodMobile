@@ -24,7 +24,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".FidelizeMain" />
         <activity android:name=".CadastrarUserActivity" />
-        <activity android:name=".CampanhaPartItemActivity"></activity>
+        <activity android:name=".CampanhaPartItemActivity" />
+        <activity android:name=".CampanhaActivity" />
+        <activity android:name=".CarimboActivity"></activity>
     </application>
 
 </manifest>
