@@ -17,7 +17,6 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="LightThemeSelector" parent="Theme.AppCompat.DayNight">
-    </style>
-    
+    <style name="LightThemeSelector" parent="Theme.AppCompat.DayNight"></style>
+
 </resources>

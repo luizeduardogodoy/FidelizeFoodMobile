@@ -152,6 +152,7 @@ public class CadastrarUserActivity extends AppCompatActivity implements onTaskCo
                 }
             };
 
+
             //executa a animação para aletar ao usuário que o email já existe
             thread.execute();
         }

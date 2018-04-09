@@ -31,15 +31,21 @@
 
             android:text="Olá eu sou o restaurante" />
 
-        <Button android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btnCampanhas"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Campanhas" />
 
-        <Button android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btnCarimbo"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Carimbo" />
 
-        <Button android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btnClientes"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Clientes" />
 

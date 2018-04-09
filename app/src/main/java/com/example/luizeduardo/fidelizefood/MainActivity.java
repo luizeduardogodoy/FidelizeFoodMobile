@@ -1,9 +1,11 @@
 package com.example.luizeduardo.fidelizefood;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -102,7 +104,11 @@ public class MainActivity extends AppCompatActivity {
 
         if(txtSenha.getText().toString().equals("") || txtUser.getText().toString().equals("")){
 
-            Toast.makeText(this, "Informar usuário e senha", Toast.LENGTH_LONG).show();
+            Utils.alertInfo(this, "Fidelize - login", "Informar usuário e senha");
+
+
+
+            //Toast.makeText(this, "Informar usuário e senha", Toast.LENGTH_LONG).show();
         }else {
 
             String post = "req=login&user=" + txtUser.getText() + "&pass=" + txtSenha.getText();
@@ -130,7 +136,25 @@ public class MainActivity extends AppCompatActivity {
                // Log.w("t", jsonObject.get("nome").toString());
 
                 if(!jsonObject.has("nome")){
-                    Toast.makeText(getBaseContext(),"Usuário ou senha inválidos",Toast.LENGTH_LONG).show();
+
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+
+
+                    alertDialog.setMessage("Usuário ou senha inválidos");
+
+                    alertDialog.setTitle("Fidelize - Login");
+
+                    alertDialog.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+
+                    alertDialog.show();
+
+                   // Toast.makeText(getBaseContext(),"Usuário ou senha inválidos",Toast.LENGTH_LONG).show();
 
                 }else {
 

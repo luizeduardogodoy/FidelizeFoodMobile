@@ -1,16 +1,23 @@
 package com.example.luizeduardo.fidelizefood;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.design.widget.TextInputEditText;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,7 +40,7 @@ public class FidelizeMain extends AppCompatActivity {
         int tipo = sharedPreferences.getInt("tipo",1);
         int id = sharedPreferences.getInt("id", 1);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
 
         Bundle bundle = intent.getExtras();
         String nomeUser = bundle.getString("nomeUser");
@@ -47,6 +54,71 @@ public class FidelizeMain extends AppCompatActivity {
 
         if(tipo == 2){
             restaurante.setVisibility(View.VISIBLE);
+
+            Button btnCliente = findViewById(R.id.btnClientes);
+            Button btnCarimbo = findViewById(R.id.btnCarimbo);
+            Button btnCampanhas = findViewById(R.id.btnCampanhas);
+
+            btnCarimbo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent intent1 = new Intent(FidelizeMain.this, CarimboActivity.class);
+                    startActivity(intent1);
+
+                }
+            });
+
+            btnCampanhas.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent intent = new Intent(FidelizeMain.this, CampanhaActivity.class);
+                    startActivity(intent);
+
+                }
+            });
+
+
+            btnCliente.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(FidelizeMain.this );
+
+
+                    alertDialog.setTitle("Teste");
+
+                    alertDialog.setMessage("Olá");
+
+                    alertDialog.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Toast.makeText(FidelizeMain.this, "Pressionado nao", Toast.LENGTH_SHORT).show();
+
+
+                        }
+                    });
+
+                    alertDialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                            Toast.makeText(FidelizeMain.this, "Pressionado sim", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    alertDialog.show();
+
+
+
+
+
+                }
+            });
+
+
         }
         else{
             cliente.setVisibility(View.VISIBLE);
