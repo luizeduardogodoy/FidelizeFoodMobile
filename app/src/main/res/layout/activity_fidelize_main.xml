@@ -9,7 +9,7 @@
     >
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/txtUserBemvindo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="121dp"
@@ -17,7 +17,8 @@
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="121dp" />
+        android:layout_marginLeft="121dp"
+        android:textStyle="bold"/>
 
     <LinearLayout
         android:id="@+id/layoutRest"
@@ -25,12 +26,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:text="Olá eu sou o restaurante" />
 
         <Button
             android:id="@+id/btnRestaurante"
@@ -65,17 +60,19 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fidelidades Ativas:"
+            android:textSize="16dp"
+            android:padding="20dp"/>
 
         <ListView
             android:id="@+id/listViewCartoes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="testChamadaAPIListarCampanhas"
-            android:text="Testar Chamada"/>
+
 
     </LinearLayout>
 

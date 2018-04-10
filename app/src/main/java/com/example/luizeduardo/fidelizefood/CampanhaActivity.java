@@ -65,27 +65,23 @@ public class CampanhaActivity extends AppCompatActivity implements onTaskComplet
 
     public void btnSalvar(View v){
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
         try {
 
             if(!dtInicio.getText().toString().equals("") && !dtTermino.getText().toString().equals("")) {
 
-                Date data1 = simpleDateFormat.parse(dtInicio.getText().toString());
-                Date data2 = simpleDateFormat.parse(dtTermino.getText().toString());
-
+                Date data1 = sdf.parse(dtInicio.getText().toString());
+                Date data2 = sdf.parse(dtTermino.getText().toString());
 
                 if (data1.getTime() > data2.getTime()) {
                     Utils.alertInfo(this, "Fidelize - regras de tela","Data de início não pode ser maior que a data de término");
-
                 }
             }
             else{
 
                 Utils.alertInfo(this, "Fidelize - regras de tela","Informar data de início e data de término");
-
             }
-
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -100,19 +96,12 @@ public class CampanhaActivity extends AppCompatActivity implements onTaskComplet
             if (qtdeInt <= 0) {
 
                 Utils.alertInfo(CampanhaActivity.this, "Fidelize - regras de tela", "A quantidade deve ser maior que zero");
-
             }
         }
         else{
 
             Utils.alertInfo(CampanhaActivity.this, "Fidelize - regras de tela", "Informar a quantidade");
-
-
         }
-
-
-
-
     }
 
     @Override
@@ -146,11 +135,9 @@ public class CampanhaActivity extends AppCompatActivity implements onTaskComplet
                     dtInicio.setText(json.getString("datainicial"));
                     dtTermino.setText(json.getString("datafinal"));
 
-
                     if(json.has("registrosativos")) {
 
                         JSONArray registrosAtivos = json.getJSONArray("registrosativos");
-
 
                         for (int i = 0; i < registrosAtivos.length(); i++) {
 

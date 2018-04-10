@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -38,8 +39,14 @@ public class CampanhaParticipanteAdpter extends ArrayAdapter<CampanhaParticipant
         TextView nomeRest = rowView.findViewById(R.id.campItemNomeRest);
         TextView label = rowView.findViewById(R.id.campItemLabel);
 
+        //converte a data em String no formato desejado
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String dataFinal = simpleDateFormat.format(campanhaParticipantes.get(pos).getDtFinal());
+
         nomeRest.setText(campanhaParticipantes.get(pos).getNomeRestaurante());
-        label.setText(campanhaParticipantes.get(pos).getCarimbo() + " de " + campanhaParticipantes.get(pos).getQtde());
+        label.setText(campanhaParticipantes.get(pos).getCarimbo() + " de " + campanhaParticipantes.get(pos).getQtde()
+        + " - Validade: " +  dataFinal);
+
 
         return rowView;
     }

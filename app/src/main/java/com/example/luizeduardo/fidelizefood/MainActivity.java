@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
         String result = sharedPreferences.getString("ultimoUserLogado", "");
-        ultimoLogado.setText("Resultado --> " + result);
+       // ultimoLogado.setText("Resultado --> " + result);
 
 
     }
@@ -65,9 +65,9 @@ public class MainActivity extends AppCompatActivity {
         super.onRestart();
         SharedPreferences sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
         String result = sharedPreferences.getString("ultimoUserLogado", "");
-        ultimoLogado.setText("Resultado --> " + result);
+        //ultimoLogado.setText("Resultado --> " + result);
 
-        Toast.makeText(this, "onRestart", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "onRestart", Toast.LENGTH_SHORT).show();
 
 
     }

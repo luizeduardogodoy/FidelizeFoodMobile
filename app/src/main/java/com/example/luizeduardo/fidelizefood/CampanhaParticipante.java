@@ -1,5 +1,7 @@
 package com.example.luizeduardo.fidelizefood;
 
+import java.util.Date;
+
 /**
  * Created by luiz on 28/03/2018.
  */
@@ -10,6 +12,15 @@ public class CampanhaParticipante {
     private String nomeRestaurante;
     private Integer qtde;
     private Integer carimbo;
+    private Date dtFinal;
+
+    public Date getDtFinal() {
+        return dtFinal;
+    }
+
+    public void setDtFinal(Date dtFinal) {
+        this.dtFinal = dtFinal;
+    }
 
     public Integer getIdUsuarioCampanha() {
         return idUsuarioCampanha;

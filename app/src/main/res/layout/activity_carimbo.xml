@@ -14,6 +14,7 @@
         android:textSize="20dp" />
 
     <EditText
+        android:id="@+id/editCPFCarimbo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -24,5 +25,6 @@
         android:id="@+id/button3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="carimbar"
         android:text="Salvar" />
 </LinearLayout>

@@ -1,7 +1,11 @@
 package com.example.luizeduardo.fidelizefood;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaExtractor;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -85,16 +89,6 @@ public class CadastrarUserActivity extends AppCompatActivity implements onTaskCo
 
         });
 
-       /* email.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Toast.makeText(view.getContext(), "email clicado", Toast.LENGTH_LONG).show();
-
-
-            }
-        });*/
-
     }
 
     public void createUser(View view){
@@ -173,16 +167,40 @@ public class CadastrarUserActivity extends AppCompatActivity implements onTaskCo
             }
             else {
                 //Toast.makeText(getBaseContext(), s, Toast.LENGTH_SHORT).show();
-                Log.w("userCreated", s);
+                //Log.w("userCreated", s);
 
                 JSONObject jsonObject = null;
 
                 try {
                     jsonObject = new JSONObject(s);
 
-                    String s1 = jsonObject.get("jaExiste").toString();
+                    if(jsonObject.has("jaExiste")){
 
-                    onTaskCompleted(s1);
+                        String s1 = jsonObject.get("jaExiste").toString();
+
+                        onTaskCompleted(s1);
+                    }
+                    else{
+                        if(jsonObject.getString("status").equals("ok")){
+
+                            AlertDialog.Builder builder  = new AlertDialog.Builder(CadastrarUserActivity.this);
+
+                            builder.setTitle("Fidelize - Cadastro de Usuário");
+                            builder.setMessage("Usuário Cadastrado com Sucesso");
+
+                            builder.setNeutralButton("ENTRAR", new DialogInterface.OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    startActivity(new Intent(CadastrarUserActivity.this, MainActivity.class));
+                                }
+                            });
+
+                            builder.show();
+                        }
+                    }
+
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();
