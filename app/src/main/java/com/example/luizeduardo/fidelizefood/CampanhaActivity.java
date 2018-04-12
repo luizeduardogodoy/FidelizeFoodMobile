@@ -3,22 +3,17 @@ package com.example.luizeduardo.fidelizefood;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 public class CampanhaActivity extends AppCompatActivity implements onTaskCompletion {
 
@@ -27,7 +22,6 @@ public class CampanhaActivity extends AppCompatActivity implements onTaskComplet
     private EditText nome;
     private EditText obs;
     private EditText qtde;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +37,7 @@ public class CampanhaActivity extends AppCompatActivity implements onTaskComplet
         Date date = new Date();
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
+        //define a data de hoje no campo inicio da campanha
         dtInicio.setText(simpleDateFormat.format(date).toString());
 
         SharedPreferences sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
@@ -52,12 +46,12 @@ public class CampanhaActivity extends AppCompatActivity implements onTaskComplet
 
         //garante que somente usuário tipo 2 poderá verificar se existe os dados da campanha
         if(tipo == 2) {
-            new CampanhaTask().execute(ConnectAPITask.urlAPI, "req=consultacampanha&UsuarioID=" + id);
+            new CarregaCampanhaTask().execute(ConnectAPITask.urlAPI, "req=consultacampanha&UsuarioID=" + id);
         }
         else{
 
             Utils.alertInfo(this, "ERRO NA APLICAÇÃO",
-                    "CONTATE O SUPORTE - Acesso não permitido ao usuario");
+                    "CONTATE O SUPORTE - Acesso não permitido ao usuário");
 
         }
 
@@ -67,14 +61,17 @@ public class CampanhaActivity extends AppCompatActivity implements onTaskComplet
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
+        Date dataIni = null;
+        Date dataFim = null;
+
         try {
 
             if(!dtInicio.getText().toString().equals("") && !dtTermino.getText().toString().equals("")) {
 
-                Date data1 = sdf.parse(dtInicio.getText().toString());
-                Date data2 = sdf.parse(dtTermino.getText().toString());
+                dataIni = sdf.parse(dtInicio.getText().toString());
+                dataFim = sdf.parse(dtTermino.getText().toString());
 
-                if (data1.getTime() > data2.getTime()) {
+                if (dataIni.getTime() > dataFim.getTime()) {
                     Utils.alertInfo(this, "Fidelize - regras de tela","Data de início não pode ser maior que a data de término");
                 }
             }
@@ -102,6 +99,24 @@ public class CampanhaActivity extends AppCompatActivity implements onTaskComplet
 
             Utils.alertInfo(CampanhaActivity.this, "Fidelize - regras de tela", "Informar a quantidade");
         }
+        //formata as datas para o formato americano
+        SimpleDateFormat formatBD = new SimpleDateFormat("yyyy-MM-dd");
+        String dataIniBD = formatBD.format(dataIni);
+        String dataFIMBD = formatBD.format(dataFim);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
+
+        int id = sharedPreferences.getInt("id", 1);
+
+        String post = "req=cadastrocampanha&UsuarioID=" + id;
+        post += "&nomeCampanha=" + nome.getText().toString();
+        post += "&dtInicio=" + dataIniBD;
+        post += "&dtFim=" + dataFIMBD;
+        post += "&qtde=" + qtde.getText().toString();
+        post += "&obs=" + obs.getText().toString();
+
+        new CadastraCampanhaTask().execute(ConnectAPITask.urlAPI, post);
+
     }
 
     @Override
@@ -109,8 +124,15 @@ public class CampanhaActivity extends AppCompatActivity implements onTaskComplet
 
     }
 
-    private class CampanhaTask extends ConnectAPITask{
+    private class CadastraCampanhaTask extends ConnectAPITask{
+/*
+        @Override
+        protected void onPostExecute(String s) {
 
+        }*/
+    }
+
+    private class CarregaCampanhaTask extends ConnectAPITask{
 
         @Override
         protected void onPostExecute(String s) {
@@ -139,14 +161,43 @@ public class CampanhaActivity extends AppCompatActivity implements onTaskComplet
 
                         JSONArray registrosAtivos = json.getJSONArray("registrosativos");
 
+                        String part = "";
+
                         for (int i = 0; i < registrosAtivos.length(); i++) {
 
                             JSONObject reg = registrosAtivos.getJSONObject(i);
 
-                            Log.w("NOME-Part", reg.getString("nome"));
+                            //Log.w("NOME-Part", reg.getString("nome"));
 
+                            part += reg.getString("nome") + " - Qtde: " +
+                                    reg.getString("refeicoes") +
 
+                                    "\n";
                         }
+
+                        Utils.alertInfo(CampanhaActivity.this,"Fidelize - Participantes",part);
+                    }
+
+
+                    if(json.has("registrospremiados")) {
+
+                        JSONArray registrosPrem = json.getJSONArray("registrospremiados");
+
+                        String part = "";
+
+                        for (int i = 0; i < registrosPrem.length(); i++) {
+
+                            JSONObject reg = registrosPrem.getJSONObject(i);
+
+                            //Log.w("NOME-Part", reg.getString("nome"));
+
+                            part += reg.getString("nome") + " - Data: " +
+                                    reg.getString("utilizado") +
+
+                                    "\n";
+                        }
+
+                        Utils.alertInfo(CampanhaActivity.this,"Fidelize - Premiados",part);
                     }
                 }
                 else if(json.getString("status").equals("!restaurante")){
@@ -162,10 +213,6 @@ public class CampanhaActivity extends AppCompatActivity implements onTaskComplet
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-
-
-
         }
     }
 
