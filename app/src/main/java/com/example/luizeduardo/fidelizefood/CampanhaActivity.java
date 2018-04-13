@@ -157,48 +157,62 @@ public class CampanhaActivity extends AppCompatActivity implements onTaskComplet
                     dtInicio.setText(json.getString("datainicial"));
                     dtTermino.setText(json.getString("datafinal"));
 
+                    String rel = "";
+
+                    String part = "";
+
                     if(json.has("registrosativos")) {
 
                         JSONArray registrosAtivos = json.getJSONArray("registrosativos");
 
-                        String part = "";
 
                         for (int i = 0; i < registrosAtivos.length(); i++) {
 
                             JSONObject reg = registrosAtivos.getJSONObject(i);
-
-                            //Log.w("NOME-Part", reg.getString("nome"));
 
                             part += reg.getString("nome") + " - Qtde: " +
                                     reg.getString("refeicoes") +
 
                                     "\n";
                         }
-
-                        Utils.alertInfo(CampanhaActivity.this,"Fidelize - Participantes",part);
                     }
 
+                    if(!part.equals("")){
+
+                        rel = "\nFidelize - Participantes \n\n";
+
+                        rel += part;
+                    }
+
+
+                    String premi = "";
 
                     if(json.has("registrospremiados")) {
 
                         JSONArray registrosPrem = json.getJSONArray("registrospremiados");
 
-                        String part = "";
-
                         for (int i = 0; i < registrosPrem.length(); i++) {
 
                             JSONObject reg = registrosPrem.getJSONObject(i);
 
-                            //Log.w("NOME-Part", reg.getString("nome"));
-
-                            part += reg.getString("nome") + " - Data: " +
-                                    reg.getString("utilizado") +
-
-                                    "\n";
+                            premi += reg.getString("nome") + " - Data: " +
+                                    reg.getString("utilizado") + "\n";
                         }
 
-                        Utils.alertInfo(CampanhaActivity.this,"Fidelize - Premiados",part);
                     }
+
+                    if(!premi.equals("")){
+                        rel += "\nFidelize - Premiados \n\n";
+
+                        rel += premi;
+
+                    }
+
+                    if(!rel.equals("")){
+
+                        Utils.alertInfo(CampanhaActivity.this, "Fidelize - Informações da Campanha", rel);
+                    }
+
                 }
                 else if(json.getString("status").equals("!restaurante")){
                     Utils.alertInfo(CampanhaActivity.this,"Fidelize - Aviso","Cadastrar os dados do Restaurante");

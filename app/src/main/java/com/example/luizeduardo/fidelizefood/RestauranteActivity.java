@@ -74,11 +74,24 @@ public class RestauranteActivity extends AppCompatActivity {
             try {
                 json = new JSONObject(s);
 
-                nome.setText(json.getString("nome"));
-                estado.setText(json.getString("estado"));
-                endereco.setText(json.getString("endereco"));
-                cidade.setText(json.getString("cidade"));
-                fone.setText(json.getString("telefone"));
+                if(json.getString("acao").equals("consulta")) {
+
+                    nome.setText(json.getString("nome"));
+                    estado.setText(json.getString("estado"));
+                    endereco.setText(json.getString("endereco"));
+                    cidade.setText(json.getString("cidade"));
+                    fone.setText(json.getString("telefone"));
+                }
+
+                if(json.getString("acao").equals("cadastro")){
+
+                    if(json.getString("status").equals("ok")){
+                        Utils.alertInfo(RestauranteActivity.this,
+                                "Fidelize - Aviso",
+                                "Dados do Restaurante foram salvos com sucesso");
+                    }
+
+                }
 
 
             } catch (JSONException e) {
