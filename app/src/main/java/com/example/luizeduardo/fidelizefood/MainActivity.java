@@ -44,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent cad = new Intent(getBaseContext(), CadastrarUserActivity.class);
+            Intent cad = new Intent(getBaseContext(), CadastrarUserActivity.class);
 
-                startActivity(cad);
+            startActivity(cad);
 
             }
         });
@@ -88,6 +88,14 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("ultimoUserLogado", nome);
         editor.putInt("tipo", tipo);
         editor.putInt("id", id);
+
+        //Cria o user que sera utilizado por toda a sessao
+        User u = new User();
+        u.setId(id);
+        u.setNome(nome);
+        u.setTipo(tipo);
+
+        UserSingleton.create(u);
 
         editor.apply();
 

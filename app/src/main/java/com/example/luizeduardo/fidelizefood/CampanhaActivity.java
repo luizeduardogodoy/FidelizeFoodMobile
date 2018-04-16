@@ -1,8 +1,6 @@
 package com.example.luizeduardo.fidelizefood;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,13 +38,9 @@ public class CampanhaActivity extends AppCompatActivity implements onTaskComplet
         //define a data de hoje no campo inicio da campanha
         dtInicio.setText(simpleDateFormat.format(date).toString());
 
-        SharedPreferences sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
-        int tipo = sharedPreferences.getInt("tipo",1);
-        int id = sharedPreferences.getInt("id", 1);
-
         //garante que somente usuário tipo 2 poderá verificar se existe os dados da campanha
-        if(tipo == 2) {
-            new CarregaCampanhaTask().execute(ConnectAPITask.urlAPI, "req=consultacampanha&UsuarioID=" + id);
+        if(UserSingleton.getInstance().getUser().getTipo() == 2) {
+            new CarregaCampanhaTask().execute(ConnectAPITask.urlAPI, "req=consultacampanha&UsuarioID=" + UserSingleton.getInstance().getUser().getId());
         }
         else{
 
@@ -104,11 +98,7 @@ public class CampanhaActivity extends AppCompatActivity implements onTaskComplet
         String dataIniBD = formatBD.format(dataIni);
         String dataFIMBD = formatBD.format(dataFim);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
-
-        int id = sharedPreferences.getInt("id", 1);
-
-        String post = "req=cadastrocampanha&UsuarioID=" + id;
+        String post = "req=cadastrocampanha&UsuarioID=" + UserSingleton.getInstance().getUser().getId();
         post += "&nomeCampanha=" + nome.getText().toString();
         post += "&dtInicio=" + dataIniBD;
         post += "&dtFim=" + dataFIMBD;
@@ -125,11 +115,10 @@ public class CampanhaActivity extends AppCompatActivity implements onTaskComplet
     }
 
     private class CadastraCampanhaTask extends ConnectAPITask{
-/*
         @Override
         protected void onPostExecute(String s) {
 
-        }*/
+        }
     }
 
     private class CarregaCampanhaTask extends ConnectAPITask{
@@ -152,9 +141,15 @@ public class CampanhaActivity extends AppCompatActivity implements onTaskComplet
                     Log.w("nomeCampanha", nomeCampanha + "");
 
                     nome.setText(nomeCampanha);
+                    nome.setEnabled(false);
+
                     obs.setText(json.getString("observacao"));
                     qtde.setText(json.getString("qtde"));
+                    qtde.setEnabled(false);
+
                     dtInicio.setText(json.getString("datainicial"));
+                    dtInicio.setEnabled(false);
+
                     dtTermino.setText(json.getString("datafinal"));
 
                     String rel = "";

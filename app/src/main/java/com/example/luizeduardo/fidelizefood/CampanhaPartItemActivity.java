@@ -1,6 +1,7 @@
 package com.example.luizeduardo.fidelizefood;
 
 import android.content.Intent;
+import android.sax.RootElement;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,11 +16,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class CampanhaPartItemActivity extends AppCompatActivity {
 
     ListView lstCampPart;
+
+    Bundle bundle;
 
 
 
@@ -30,7 +35,7 @@ public class CampanhaPartItemActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        Bundle bundle = intent.getExtras();
+        this.bundle = intent.getExtras();
 
         String nomeRest = bundle.getString("nomeRestaurante");
         int idUsuarioCampanha = bundle.getInt("idUsuarioCampanha");
@@ -39,9 +44,7 @@ public class CampanhaPartItemActivity extends AppCompatActivity {
 
         txtNomeRest.setText(nomeRest + "- ID: " + idUsuarioCampanha);
 
-
         lstCampPart = findViewById(R.id.lstCampPart);
-
 
         String post = "req=listarCarimbosPart&idUsuarioCampanha="+idUsuarioCampanha;
 
@@ -62,21 +65,71 @@ public class CampanhaPartItemActivity extends AppCompatActivity {
 
                 JSONArray array = jsonObject.getJSONArray("registros");
 
-                String[] strings = new String[array.length()];
+                ArrayList<RowCartao> carimbos = new ArrayList<RowCartao>();
 
+                int qtdeCarimbos = array.length();
+
+                Log.w("qtde", qtdeCarimbos + "");
+                int c = 0;
+                int l = 0;
+
+                int qtdePorLinha = 4;
+
+                RowCartao rc = new RowCartao();
+                rc.carimbos = new HashMap<Integer, String>();
+
+                while(bundle.getInt("qtde") > c){
+
+                    if(l == qtdePorLinha){
+
+                        carimbos.add(rc);
+
+                        l = 0;
+
+                        rc = new RowCartao();
+
+                        rc.carimbos = new HashMap<Integer, String>();
+                    }
+
+                    if(c < qtdeCarimbos) {
+
+                        JSONObject jObj = array.getJSONObject(c);
+
+                        rc.carimbos.put(l, jObj.getString("ultima"));
+                    }
+                    else
+                        rc.carimbos.put(l, "vazio");
+
+                    l++;
+
+                    c++;
+                }
+
+                carimbos.add(rc);
+
+                Log.w("quantidade c", c + "");
+
+
+
+                for(RowCartao rcc : carimbos){
+
+                    Log.w("debugHashMap",rcc.carimbos.toString());
+
+                }
+
+
+/*
                 for (int i=0; i<array.length(); i++) {
                     JSONObject news = array.getJSONObject(i);
                     String carimbo = news.getString("ultima");
 
-                    strings[i] = (i + 1) + " - " + carimbo;
+                    carimbos[i] = (i + 1) + " - " + carimbo;
                 }
+*/
 
-                ArrayAdapter adapter = new ArrayAdapter<String>(
-                        getBaseContext(),
-                        android.R.layout.simple_list_item_1,
-                        strings);
+                ArrayAdapter<RowCartao> rowCartaoArrayAdapter = new ClienteCarimboAdapter(CampanhaPartItemActivity.this, carimbos);
 
-                lstCampPart.setAdapter( adapter);
+                lstCampPart.setAdapter( rowCartaoArrayAdapter);
 
             } catch (JSONException e) {
                 e.printStackTrace();

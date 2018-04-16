@@ -34,13 +34,9 @@ public class RestauranteActivity extends AppCompatActivity {
         endereco = findViewById(R.id.editEndRest);
         fone = findViewById(R.id.editFoneRest);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
-        //int tipo = sharedPreferences.getInt("tipo",1);
-        Integer id = sharedPreferences.getInt("id", 1);
+        UsuarioID = UserSingleton.getInstance().getUser().getId();
 
-        UsuarioID = id;
-
-        new RestauranteTask().execute(ConnectAPITask.urlAPI,"req=consultarestaurante&UsuarioID="+ id);
+        new RestauranteTask().execute(ConnectAPITask.urlAPI,"req=consultarestaurante&UsuarioID="+ UsuarioID);
     }
 
 

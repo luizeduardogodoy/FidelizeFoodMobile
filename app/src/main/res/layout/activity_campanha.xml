@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="10dp"
     tools:context="com.example.luizeduardo.fidelizefood.CampanhaActivity">
@@ -11,34 +12,91 @@
         android:id="@+id/textView8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
-        android:text="Cadastro da Campanha de Fidelidade"
+        android:gravity="center"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        android:text="Cadastro: Campanha de Fidelidade"
         android:textSize="19dp"
-        android:gravity="center"/>
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="75dp"
+            android:text="Nome:"
+            android:textAlignment="center" />
 
     <EditText
         android:id="@+id/editNomeCampanha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
+
         android:hint="Nome"
         android:inputType="textPersonName" />
+    </LinearLayout>
 
-    <EditText
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="75dp"
+            android:text="Início:"
+            android:textAlignment="center" />
+
+
+        <com.vicmikhailau.maskededittext.MaskedEditText
         android:id="@+id/editInicioCampanha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Início"
+        app:mask="##/##/####"
         android:inputType="date" />
 
-    <EditText
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="75dp"
+            android:text="Término:"
+            android:textAlignment="center" />
+
+    <com.vicmikhailau.maskededittext.MaskedEditText
         android:id="@+id/editTerminoCampanha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Término"
-        android:inputType="date" />
+        app:mask="##/##/####"
+        android:inputType="datetime" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="75dp"
+            android:text="Quantidade:"
+            android:textAlignment="center" />
 
     <EditText
         android:id="@+id/editQtdeCamapanha"
@@ -48,6 +106,20 @@
         android:hint="Quantidade"
         android:inputType="number" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="75dp"
+            android:text="Observação:"
+            android:textAlignment="center" />
+
     <EditText
         android:id="@+id/editObsCampanha"
         android:layout_width="match_parent"
@@ -55,6 +127,8 @@
         android:ems="10"
         android:hint="Observação"
         android:inputType="textMultiLine" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnSalvarCampanha"

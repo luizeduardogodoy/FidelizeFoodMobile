@@ -19,17 +19,9 @@ public class CarimboActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carimbo);
 
-
-
-
     }
 
     public void carimbar(View v){
-
-
-        SharedPreferences sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
-        //int tipo = sharedPreferences.getInt("tipo",1);
-        Integer id = sharedPreferences.getInt("id", 1);
 
         EditText txtCarimbo = findViewById(R.id.editCPFCarimbo);
 
@@ -38,7 +30,7 @@ public class CarimboActivity extends AppCompatActivity {
             String post = null;
 
             post = "req=carimbo";
-            post += "&UsuarioID=" + id;
+            post += "&UsuarioID=" + UserSingleton.getInstance().getUser().getId();
             post += "&idusercliente=" + txtCarimbo.getText().toString();
 
                     new CarimboTask().execute(ConnectAPITask.urlAPI, post);

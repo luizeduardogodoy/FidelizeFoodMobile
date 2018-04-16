@@ -36,15 +36,10 @@ public class FidelizeMain extends AppCompatActivity {
 
         TextView textView = findViewById(R.id.txtUserBemvindo);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
-        int tipo = sharedPreferences.getInt("tipo",1);
-        int id = sharedPreferences.getInt("id", 1);
+        Integer tipo = UserSingleton.getInstance().getUser().getTipo();
+        Integer id = UserSingleton.getInstance().getUser().getId();
 
-        final Intent intent = getIntent();
-
-        Bundle bundle = intent.getExtras();
-        String nomeUser = bundle.getString("nomeUser");
-        textView.setText("Bem vindo, "+ nomeUser );
+        textView.setText("Bem vindo, "+ UserSingleton.getInstance().getUser().getNome() );
 
         LinearLayout cliente = findViewById(R.id.layoutCliente);
         LinearLayout restaurante = findViewById(R.id.layoutRest);
@@ -129,6 +124,7 @@ public class FidelizeMain extends AppCompatActivity {
                 Bundle bCamPart = new Bundle();
                 bCamPart.putString("nomeRestaurante", campPart.getNomeRestaurante());
                 bCamPart.putInt("idUsuarioCampanha", campPart.getIdUsuarioCampanha());
+                bCamPart.putInt("qtde", campPart.getQtde());
 
                 campPartItem.putExtras(bCamPart);
 
@@ -141,6 +137,28 @@ public class FidelizeMain extends AppCompatActivity {
             new FidelizeMainTask().execute(ConnectAPITask.urlAPI, post);
         }
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Toast.makeText(this, "onStart", Toast.LENGTH_SHORT).show();
+
+        if(UserSingleton.getInstance().getUser().getTipo() == 1) {
+            String post = "req=listarcampanhaspart&ID_USER=" + UserSingleton.getInstance().getUser().getId();
+
+            new FidelizeMainTask().execute(ConnectAPITask.urlAPI, post);
+        }
+    }
+
+/*
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+
+        Toast.makeText(this, "onRestart", Toast.LENGTH_SHORT).show();
+    }*/
 
     class FidelizeMainTask extends ConnectAPITask{
 
