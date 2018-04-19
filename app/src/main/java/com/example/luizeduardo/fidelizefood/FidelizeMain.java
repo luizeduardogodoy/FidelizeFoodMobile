@@ -1,5 +1,6 @@
 package com.example.luizeduardo.fidelizefood;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -24,7 +25,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-public class FidelizeMain extends AppCompatActivity {
+public class FidelizeMain extends Activity {
 
     ListView cartoes;
     ArrayAdapter<CampanhaParticipante> cartoesAdapter;

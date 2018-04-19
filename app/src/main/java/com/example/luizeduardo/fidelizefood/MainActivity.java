@@ -1,5 +1,6 @@
 package com.example.luizeduardo.fidelizefood;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,7 +26,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     TextView ultimoLogado;
 

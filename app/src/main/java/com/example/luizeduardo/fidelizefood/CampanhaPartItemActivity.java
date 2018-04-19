@@ -1,5 +1,6 @@
 package com.example.luizeduardo.fidelizefood;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.sax.RootElement;
 import android.support.v7.app.AppCompatActivity;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class CampanhaPartItemActivity extends AppCompatActivity {
+public class CampanhaPartItemActivity extends Activity {
 
     ListView lstCampPart;
 

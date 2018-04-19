@@ -1,5 +1,6 @@
 package com.example.luizeduardo.fidelizefood;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,7 +14,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class CampanhaActivity extends AppCompatActivity implements onTaskCompletion {
+public class CampanhaActivity extends Activity implements onTaskCompletion {
 
     private EditText dtInicio;
     private EditText dtTermino;

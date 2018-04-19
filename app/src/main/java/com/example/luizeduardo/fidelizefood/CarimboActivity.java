@@ -1,5 +1,6 @@
 package com.example.luizeduardo.fidelizefood;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class CarimboActivity extends AppCompatActivity {
+public class CarimboActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,19 +53,28 @@ public class CarimboActivity extends AppCompatActivity {
             try {
                 json = new JSONObject(s);
 
-               // if(json.getString("status").equals("ok")) {
+                if(json.has("nome") && json.getString("status").equals("ok")) {
 
-                if(json.has("nome")) {
                     Utils.alertInfo(CarimboActivity.this,
                             "Fidelize - Carimbo",
                             json.getString("nome") + " - " + json.getString("mensagem"));
                 }
+                else if (json.getString("status").equals("!restaurante")){
+                    Utils.alertInfo(CarimboActivity.this,
+                            "Fidelize - Carimbo",
+                            "Dados do Restaurante não foram cadastrados");
+                }
+                else if (json.getString("status").equals("!temcampanha")){
+                    Utils.alertInfo(CarimboActivity.this,
+                            "Fidelize - Carimbo",
+                            "Não existe campanha ativa");
+                }
+
                 else{
                     Utils.alertInfo(CarimboActivity.this,
                             "Fidelize - Carimbo",
                             "Cliente não encontrado");
                 }
-                //}
 
 
             } catch (JSONException e) {

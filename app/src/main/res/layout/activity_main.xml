@@ -23,14 +23,13 @@
         android:layout_marginBottom="10dp"
         android:contentDescription="User"
         android:text="Usuário"
-        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textStyle="bold"
         android:textSize="17dp" />
 
     <EditText
         android:id="@+id/txtUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:layout_marginBottom="10dp"
         android:hint="Informe seu email"
         android:inputType="textPersonName" />
@@ -41,14 +40,13 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="Senha"
-        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textStyle="bold"
         android:textSize="17dp" />
 
     <EditText
         android:id="@+id/txtSenha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:layout_marginBottom="10dp"
         android:hint="Informe sua senha"
         android:inputType="textPassword" />
@@ -64,15 +62,12 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:onClick="conexaoLogin"
-            android:text="ENTRAR"
-            android:theme="@style/Theme.Design.Light" />
+            android:text="Entrar" />
 
         <Button
             android:id="@+id/btnCadastrar"
             android:layout_width="150dp"
-
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:text="Cadastrar" />
     </LinearLayout>
 

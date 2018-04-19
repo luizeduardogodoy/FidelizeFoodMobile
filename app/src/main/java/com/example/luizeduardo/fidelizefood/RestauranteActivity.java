@@ -1,5 +1,6 @@
 package com.example.luizeduardo.fidelizefood;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,7 +14,7 @@ import android.widget.EditText;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class RestauranteActivity extends AppCompatActivity {
+public class RestauranteActivity extends Activity {
 
     private EditText nome;
     private EditText cidade;

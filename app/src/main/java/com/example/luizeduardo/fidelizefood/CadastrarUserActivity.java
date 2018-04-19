@@ -1,5 +1,6 @@
 package com.example.luizeduardo.fidelizefood;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -19,7 +20,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class CadastrarUserActivity extends AppCompatActivity implements onTaskCompletion{
+public class CadastrarUserActivity extends Activity implements onTaskCompletion{
 
     private EditText nome;
     private EditText pass;
