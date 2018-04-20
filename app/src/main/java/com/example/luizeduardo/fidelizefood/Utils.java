@@ -10,6 +10,14 @@ import android.content.DialogInterface;
 
 public class Utils {
 
+    /**
+     *
+     * Alert Builder padronizado
+     *
+     * @param context
+     * @param title
+     * @param message
+     */
 
     public static void alertInfo(Context context, String title, String message){
 
