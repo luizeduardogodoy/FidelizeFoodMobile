@@ -35,10 +35,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        Toast.makeText(this, "Inicio", Toast.LENGTH_LONG).show();
-
-
         Button btnCad = findViewById(R.id.btnCadastrar);
 
         btnCad.setOnClickListener(new View.OnClickListener() {
@@ -75,9 +71,7 @@ public class MainActivity extends Activity {
 
     protected void abrirFidelizeMain(String nome, int tipo, int id){
 
-
         Intent intent = new Intent(this, FidelizeMain.class);
-
 
         Bundle bundle = new Bundle();
 
@@ -115,21 +109,14 @@ public class MainActivity extends Activity {
 
             Utils.alertInfo(this, "Fidelize - login", "Informar usuário e senha");
 
-
-
-            //Toast.makeText(this, "Informar usuário e senha", Toast.LENGTH_LONG).show();
         }else {
-
             String post = "req=login&user=" + txtUser.getText() + "&pass=" + txtSenha.getText();
-
 
             new LoginTask().execute(ConnectAPITask.urlAPI, post);
         }
     }
 
-
     private class LoginTask extends ConnectAPITask{
-
 
         @Override
         protected void onPostExecute(String s) {
@@ -146,22 +133,7 @@ public class MainActivity extends Activity {
 
                 if(!jsonObject.has("nome")){
 
-                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
-
-
-                    alertDialog.setMessage("Usuário ou senha inválidos");
-
-                    alertDialog.setTitle("Fidelize - Login");
-
-                    alertDialog.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
-
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-
-                        }
-                    });
-
-                    alertDialog.show();
+                    Utils.alertInfo(MainActivity.this,"Fidelize - Login", "Usuário ou senha inválidos" );
 
                    // Toast.makeText(getBaseContext(),"Usuário ou senha inválidos",Toast.LENGTH_LONG).show();
 

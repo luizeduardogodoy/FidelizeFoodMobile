@@ -91,7 +91,7 @@ public class FidelizeMain extends Activity {
                 alertDialog.setNegativeButton("Não", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                    Toast.makeText(FidelizeMain.this, "Pressionado nao", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "Pressionado nao", Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -100,7 +100,7 @@ public class FidelizeMain extends Activity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
-                    Toast.makeText(FidelizeMain.this, "Pressionado sim", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "Pressionado sim", Toast.LENGTH_SHORT).show();
                     }
                 });
 
