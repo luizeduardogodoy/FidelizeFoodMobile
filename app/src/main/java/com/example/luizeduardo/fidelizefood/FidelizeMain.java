@@ -5,13 +5,16 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -25,7 +28,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-public class FidelizeMain extends Activity {
+public class FidelizeMain extends AppCompatActivity {
 
     ListView cartoes;
     ArrayAdapter<CampanhaParticipante> cartoesAdapter;
@@ -34,6 +37,10 @@ public class FidelizeMain extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fidelize_main);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
 
         TextView textView = findViewById(R.id.txtUserBemvindo);
 
@@ -51,10 +58,10 @@ public class FidelizeMain extends Activity {
         if(tipo == 2){
             restaurante.setVisibility(View.VISIBLE);
 
-            Button btnCliente = findViewById(R.id.btnClientes);
-            Button btnCarimbo = findViewById(R.id.btnCarimbo);
-            Button btnCampanhas = findViewById(R.id.btnCampanhas);
-            Button btnRestaurante = findViewById(R.id.btnRestaurante);
+            ImageView btnCliente = findViewById(R.id.btnClientes);
+            ImageView btnCarimbo = findViewById(R.id.btnCarimbo);
+            ImageView btnCampanhas = findViewById(R.id.btnCampanhas);
+            ImageView btnRestaurante = findViewById(R.id.btnRestaurante);
 
             btnRestaurante.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -58,11 +58,11 @@ public class ClienteCarimboAdapter extends ArrayAdapter<RowCartao> {
         if(rc.carimbos.get(0) != null){
             coluna01.setText(rc.carimbos.get(0).toString());
 
-            img01.setImageResource(R.drawable.carimbos);
+            img01.setImageResource(R.drawable.seal);
 
 
             if(rc.carimbos.get(0).equals("vazio")){
-                img01.setImageResource(R.drawable.prato);
+                img01.setImageResource(R.drawable.cancel);
 
             }
 
@@ -73,10 +73,10 @@ public class ClienteCarimboAdapter extends ArrayAdapter<RowCartao> {
         if(rc.carimbos.get(1) != null){
             coluna02.setText(rc.carimbos.get(1).toString());
 
-            img02.setImageResource(R.drawable.carimbos);
+            img02.setImageResource(R.drawable.seal);
 
             if(rc.carimbos.get(1).equals("vazio")){
-                img02.setImageResource(R.drawable.prato);
+                img02.setImageResource(R.drawable.cancel);
 
             }
 
@@ -86,10 +86,10 @@ public class ClienteCarimboAdapter extends ArrayAdapter<RowCartao> {
         if(rc.carimbos.get(2) != null){
             coluna03.setText(rc.carimbos.get(2).toString());
 
-            img03.setImageResource(R.drawable.carimbos);
+            img03.setImageResource(R.drawable.seal);
 
             if(rc.carimbos.get(2).equals("vazio")){
-                img03.setImageResource(R.drawable.prato);
+                img03.setImageResource(R.drawable.cancel);
             }
         }
 
@@ -97,10 +97,10 @@ public class ClienteCarimboAdapter extends ArrayAdapter<RowCartao> {
         if(rc.carimbos.get(3) != null){
             coluna04.setText(rc.carimbos.get(3).toString());
 
-            img04.setImageResource(R.drawable.carimbos);
+            img04.setImageResource(R.drawable.seal);
 
             if(rc.carimbos.get(3).equals("vazio")){
-                img04.setImageResource(R.drawable.prato);
+                img04.setImageResource(R.drawable.cancel);
             }
         }
 

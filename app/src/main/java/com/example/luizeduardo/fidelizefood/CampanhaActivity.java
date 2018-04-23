@@ -1,6 +1,5 @@
 package com.example.luizeduardo.fidelizefood;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,7 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class CampanhaActivity extends Activity implements onTaskCompletion {
+public class CampanhaActivity extends AppCompatActivity implements onTaskCompletion {
 
     private EditText dtInicio;
     private EditText dtTermino;
@@ -61,6 +60,9 @@ public class CampanhaActivity extends Activity implements onTaskCompletion {
 
         try {
 
+
+            String vQtde = qtde.getText().toString();
+
             if(!dtInicio.getText().toString().equals("") && !dtTermino.getText().toString().equals("")) {
 
                 dataIni = sdf.parse(dtInicio.getText().toString());
@@ -70,43 +72,53 @@ public class CampanhaActivity extends Activity implements onTaskCompletion {
                     Utils.alertInfo(this, "Fidelize - regras de tela","Data de início não pode ser maior que a data de término");
                 }
             }
-            else{
+            else if(dtInicio.getText().toString().equals("") || dtTermino.getText().toString().equals("")){
 
                 Utils.alertInfo(this, "Fidelize - regras de tela","Informar data de início e data de término");
             }
+
+            else if(!vQtde.equals("")) {
+
+                int qtdeInt = Integer.parseInt(vQtde);
+
+                if (qtdeInt <= 0) {
+
+                    Utils.alertInfo(CampanhaActivity.this, "Fidelize - regras de tela", "A quantidade deve ser maior que zero");
+                }
+                else{
+
+                    if(qtdeInt > 50){
+                        Utils.alertInfo(CampanhaActivity.this, "Fidelize - regras de tela", "A quantidade maxima deve ser 50");
+                    }
+
+                }
+            }
+            else if(vQtde.equals("")){
+
+                Utils.alertInfo(CampanhaActivity.this, "Fidelize - regras de tela", "Informar a quantidade");
+            }
+
+            else {
+                //formata as datas para o formato americano
+                SimpleDateFormat formatBD = new SimpleDateFormat("yyyy-MM-dd");
+                String dataIniBD = formatBD.format(dataIni);
+                String dataFIMBD = formatBD.format(dataFim);
+
+                String post = "req=cadastrocampanha&UsuarioID=" + UserSingleton.getInstance().getUser().getId();
+                post += "&nomeCampanha=" + nome.getText().toString();
+                post += "&dtInicio=" + dataIniBD;
+                post += "&dtFim=" + dataFIMBD;
+                post += "&qtde=" + qtde.getText().toString();
+                post += "&obs=" + obs.getText().toString();
+
+                new CadastraCampanhaTask().execute(ConnectAPITask.urlAPI, post);
+            }
+
 
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        String vQtde = qtde.getText().toString();
-
-        if(!vQtde.equals("")) {
-
-            int qtdeInt = Integer.parseInt(vQtde);
-
-            if (qtdeInt <= 0) {
-
-                Utils.alertInfo(CampanhaActivity.this, "Fidelize - regras de tela", "A quantidade deve ser maior que zero");
-            }
-        }
-        else{
-
-            Utils.alertInfo(CampanhaActivity.this, "Fidelize - regras de tela", "Informar a quantidade");
-        }
-        //formata as datas para o formato americano
-        SimpleDateFormat formatBD = new SimpleDateFormat("yyyy-MM-dd");
-        String dataIniBD = formatBD.format(dataIni);
-        String dataFIMBD = formatBD.format(dataFim);
-
-        String post = "req=cadastrocampanha&UsuarioID=" + UserSingleton.getInstance().getUser().getId();
-        post += "&nomeCampanha=" + nome.getText().toString();
-        post += "&dtInicio=" + dataIniBD;
-        post += "&dtFim=" + dataFIMBD;
-        post += "&qtde=" + qtde.getText().toString();
-        post += "&obs=" + obs.getText().toString();
-
-        new CadastraCampanhaTask().execute(ConnectAPITask.urlAPI, post);
 
     }
 

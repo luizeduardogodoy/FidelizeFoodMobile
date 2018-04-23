@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class CampanhaPartItemActivity extends Activity {
+public class CampanhaPartItemActivity extends AppCompatActivity {
 
     ListView lstCampPart;
 

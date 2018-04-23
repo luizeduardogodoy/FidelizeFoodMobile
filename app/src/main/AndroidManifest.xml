@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@android:style/Theme.Holo.Light">
+        android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,12 +22,17 @@
             android:name=".Main2Activity"
             android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".FidelizeMain" />
+        <activity android:name=".FidelizeMain"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".CadastrarUserActivity" />
         <activity android:name=".CampanhaPartItemActivity" />
         <activity android:name=".CampanhaActivity" />
         <activity android:name=".CarimboActivity" />
-        <activity android:name=".RestauranteActivity"></activity>
+        <activity android:name=".RestauranteActivity" />
+        <activity
+            android:name=".Main3Activity"
+            android:label="@string/title_activity_main3"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

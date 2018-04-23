@@ -16,7 +16,7 @@ import java.net.URL;
  */
 
 public class ConnectAPITask extends AsyncTask<String,Void, String>{
-    public static String urlAPI = "https://fidelizefood.websiteseguro.com/index1.php";
+    public static String urlAPI = "http://fidelizefood.com.br/index1.php";
     //public static String urlAPI = "http://192.168.0.5/public_html/index.php";
                                  //  http://softprevirpps/fidelizefood-backend/public_html/
 
