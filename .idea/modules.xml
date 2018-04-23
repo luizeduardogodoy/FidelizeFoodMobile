@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FidelizeFood.iml" filepath="$PROJECT_DIR$/FidelizeFood.iml" />
+      <module fileurl="file://C:\Users\luiz.eduardo\AndroidStudioProjects\FidelizeFoodMobile\FidelizeFood.iml" filepath="C:\Users\luiz.eduardo\AndroidStudioProjects\FidelizeFoodMobile\FidelizeFood.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FidelizeFoodMobile.iml" filepath="$PROJECT_DIR$/FidelizeFoodMobile.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

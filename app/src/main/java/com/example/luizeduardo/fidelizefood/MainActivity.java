@@ -26,7 +26,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     TextView ultimoLogado;
 
