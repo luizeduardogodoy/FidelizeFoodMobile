@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -27,7 +29,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-public class FidelizeMain extends Activity {
+public class FidelizeMain extends AppCompatActivity {
 
     ListView cartoes;
     ArrayAdapter<CampanhaParticipante> cartoesAdapter;
@@ -53,10 +55,10 @@ public class FidelizeMain extends Activity {
         if(tipo == 2){
             restaurante.setVisibility(View.VISIBLE);
 
-            Button btnCliente = findViewById(R.id.btnClientes);
-            Button btnCarimbo = findViewById(R.id.btnCarimbo);
-            Button btnCampanhas = findViewById(R.id.btnCampanhas);
-            Button btnRestaurante = findViewById(R.id.btnRestaurante);
+            ImageView btnCliente = findViewById(R.id.btnClientes);
+            ImageView btnCarimbo = findViewById(R.id.btnCarimbo);
+            ImageView btnCampanhas = findViewById(R.id.btnCampanhas);
+            ImageView btnRestaurante = findViewById(R.id.btnRestaurante);
 
             btnRestaurante.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -87,26 +89,8 @@ public class FidelizeMain extends Activity {
                 @Override
                 public void onClick(View view) {
 
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(FidelizeMain.this );
-                alertDialog.setTitle("Teste");
-                alertDialog.setMessage("Olá");
-                alertDialog.setNegativeButton("Não", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                    Toast.makeText(getBaseContext(), "Pressionado nao", Toast.LENGTH_SHORT).show();
-
-                    }
-                });
-
-                alertDialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    Toast.makeText(getBaseContext(), "Pressionado sim", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-                alertDialog.show();
+                Intent intent = new Intent(FidelizeMain.this, RelatorioClienteActivity.class);
+                startActivity(intent);
 
                 }
             });
@@ -145,12 +129,18 @@ public class FidelizeMain extends Activity {
     protected void onStart() {
         super.onStart();
 
-        Toast.makeText(this, "onStart", Toast.LENGTH_SHORT).show();
+        if(UserSingleton.getInstance().getUser() == null){
+            Intent login = new Intent(FidelizeMain.this, MainActivity.class);
 
-        if(UserSingleton.getInstance().getUser().getTipo() == 1) {
-            String post = "req=listarcampanhaspart&ID_USER=" + UserSingleton.getInstance().getUser().getId();
+            startActivity(login);
+        }
+        else {
 
-            new FidelizeMainTask().execute(ConnectAPITask.urlAPI, post);
+            if (UserSingleton.getInstance().getUser().getTipo() == 1) {
+                String post = "req=listarcampanhaspart&ID_USER=" + UserSingleton.getInstance().getUser().getId();
+
+                new FidelizeMainTask().execute(ConnectAPITask.urlAPI, post);
+            }
         }
     }
 
@@ -211,17 +201,6 @@ public class FidelizeMain extends Activity {
         }
     }
 
-    public void testChamadaAPIListarCampanhas(View view){
-
-        SharedPreferences sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
-        int tipo = sharedPreferences.getInt("tipo",1);
-        int id = sharedPreferences.getInt("id", 1);
-
-        String post = "req=listarcampanhaspart&ID_USER="+id;
-
-        new FidelizeMainTask().execute(ConnectAPITask.urlAPI, post);
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -231,12 +210,39 @@ public class FidelizeMain extends Activity {
     }
 
     @Override
-    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {
 
         if(item.getItemId() == R.id.menuLogout){
             Toast.makeText(this, "Não faça isso", Toast.LENGTH_LONG).show();
+
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+            alertDialog.setTitle("Fidelize - Sair do APP");
+
+            alertDialog.setMessage("deseja realmente sair do FidelizeFood?");
+
+            alertDialog.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            });
+
+            alertDialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    //apaga o usuário da sessão informando null no metodo create
+                    UserSingleton.create(null);
+
+                    Intent login = new Intent(FidelizeMain.this, MainActivity.class);
+
+                    startActivity(login);
+                }
+            });
+
+            alertDialog.show();
         }
 
-        return super.onMenuItemSelected(featureId, item);
+        return true;
     }
 }

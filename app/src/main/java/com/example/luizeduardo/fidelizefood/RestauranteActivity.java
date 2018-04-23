@@ -14,7 +14,7 @@ import android.widget.EditText;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class RestauranteActivity extends Activity {
+public class RestauranteActivity extends AppCompatActivity {
 
     private EditText nome;
     private EditText cidade;

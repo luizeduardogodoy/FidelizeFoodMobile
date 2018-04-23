@@ -14,19 +14,13 @@ public class UserSingleton {
         return this.user;
     }
 
-
     public static void create(User user){
 
         if(userSingleton == null){
-
             userSingleton = new UserSingleton();
-
-
         }
 
         userSingleton.user = user;
-
-
     }
 
     public static UserSingleton getInstance() {

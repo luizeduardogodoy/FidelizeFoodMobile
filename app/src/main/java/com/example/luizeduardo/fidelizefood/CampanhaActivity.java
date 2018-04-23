@@ -55,54 +55,38 @@ public class CampanhaActivity extends AppCompatActivity implements onTaskComplet
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-        Date dataIni = null;
-        Date dataFim = null;
-
         try {
-
 
             String vQtde = qtde.getText().toString();
 
-            if(!dtInicio.getText().toString().equals("") && !dtTermino.getText().toString().equals("")) {
+            String dtIni = dtInicio.getText().toString();
+            String dtFim = dtTermino.getText().toString();
 
-                dataIni = sdf.parse(dtInicio.getText().toString());
-                dataFim = sdf.parse(dtTermino.getText().toString());
-
-                if (dataIni.getTime() > dataFim.getTime()) {
-                    Utils.alertInfo(this, "Fidelize - regras de tela","Data de início não pode ser maior que a data de término");
-                }
-            }
-            else if(dtInicio.getText().toString().equals("") || dtTermino.getText().toString().equals("")){
-
+            if(dtIni.equals("") || dtFim.equals("")) {
                 Utils.alertInfo(this, "Fidelize - regras de tela","Informar data de início e data de término");
             }
-
-            else if(!vQtde.equals("")) {
-
-                int qtdeInt = Integer.parseInt(vQtde);
-
-                if (qtdeInt <= 0) {
-
-                    Utils.alertInfo(CampanhaActivity.this, "Fidelize - regras de tela", "A quantidade deve ser maior que zero");
-                }
-                else{
-
-                    if(qtdeInt > 50){
-                        Utils.alertInfo(CampanhaActivity.this, "Fidelize - regras de tela", "A quantidade maxima deve ser 50");
-                    }
-
-                }
+            else if(sdf.parse(dtFim).getTime() < sdf.parse(dtIni).getTime()){
+                Utils.alertInfo(this, "Fidelize - regras de tela","Data de início não pode ser maior que a data de término");
             }
             else if(vQtde.equals("")){
 
-                Utils.alertInfo(CampanhaActivity.this, "Fidelize - regras de tela", "Informar a quantidade");
+                Utils.alertInfo(this, "Fidelize - regras de tela", "Informar a quantidade");
+            }
+            else if(!vQtde.equals("") && Integer.parseInt(vQtde) > 50) {
+                Utils.alertInfo(this, "Fidelize - regras de tela", "A quantidade máxima deve ser 50");
             }
 
+            else if(!vQtde.equals("") && Integer.parseInt(vQtde) <= 0) {
+                Utils.alertInfo(this, "Fidelize - regras de tela", "A quantidade deve ser maior que zero");
+            }
             else {
+
+                Log.w("vQtdeElse", "cai no else");
+
                 //formata as datas para o formato americano
                 SimpleDateFormat formatBD = new SimpleDateFormat("yyyy-MM-dd");
-                String dataIniBD = formatBD.format(dataIni);
-                String dataFIMBD = formatBD.format(dataFim);
+                String dataIniBD = formatBD.format(sdf.parse(dtIni));
+                String dataFIMBD = formatBD.format(sdf.parse(dtFim));
 
                 String post = "req=cadastrocampanha&UsuarioID=" + UserSingleton.getInstance().getUser().getId();
                 post += "&nomeCampanha=" + nome.getText().toString();
@@ -113,6 +97,8 @@ public class CampanhaActivity extends AppCompatActivity implements onTaskComplet
 
                 new CadastraCampanhaTask().execute(ConnectAPITask.urlAPI, post);
             }
+
+            Log.w("vQtde2", vQtde + " t");
 
 
         } catch (ParseException e) {

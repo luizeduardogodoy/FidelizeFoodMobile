@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Relatório de Clientes"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:layout_gravity="center"
+        android:textSize="20dp"/>
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="3">
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="Nome"
+                android:padding="3dip" />
+            <TextView
+                android:text="Email"
+                android:gravity="right"
+                android:padding="3dip" />
+            <TextView
+                android:text="Ultima refeição"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="Luiz Eduardo"
+                android:padding="3dip" />
+            <TextView
+                android:text="06419831903"
+                android:gravity="right"
+                android:padding="3dip" />
+            <TextView
+                android:text="03/11/2018"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="Ademilson"
+                android:padding="3dip" />
+            <TextView
+                android:text="0651238866"
+                android:gravity="right"
+                android:padding="3dip" />
+            <TextView
+                android:text="03/12/2018"
+                android:gravity="right"
+                android:padding="3dip" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+    </TableLayout>
+</LinearLayout>

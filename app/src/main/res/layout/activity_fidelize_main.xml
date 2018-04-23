@@ -6,21 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.luizeduardo.fidelizefood.FidelizeMain"
     android:orientation="vertical"
-    >
-
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-    </android.support.design.widget.AppBarLayout>
+    android:background="#FFF0F5">
 
     <TextView
         android:id="@+id/txtUserBemvindo"
@@ -42,61 +28,107 @@
         android:gravity="center"
         android:orientation="vertical">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_margin="10dp"
-            >
+            android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:src="@drawable/home_circle"
-            android:id="@+id/btnRestaurante"
-            android:background="#708090"
-            />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:id="@+id/btnRestaurante"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="#B0C4DE "
+                    android:padding="6dp"
+                    android:src="@drawable/home_circle" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Restaurante" />
 
-        <ImageView
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:src="@drawable/hexagon"
-            android:id="@+id/btnCampanhas"
-            android:layout_marginLeft="15dp"
+            </LinearLayout>
 
-            android:background="#708090"
-            />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp">
+                    <ImageView
+                        android:id="@+id/btnCampanhas"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="#B0C4DE"
+                        android:padding="6dp"
+                        android:src="@drawable/hexagon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Campanha" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_margin="10dp"
-            >
+            android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:src="@drawable/approval"
-            android:id="@+id/btnCarimbo"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-            android:background="#708090"
-            />
+                <ImageView
+                    android:id="@+id/btnCarimbo"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="#B0C4DE"
+                    android:padding="6dp"
+                    android:src="@drawable/approval" />
 
-        <ImageView
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:src="@drawable/account_multiple"
-            android:id="@+id/btnClientes"
-            android:layout_marginLeft="15dp"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Carimbar" />
 
-            android:background="#708090"
-            />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/btnClientes"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+
+                    android:background="#708090"
+                    android:backgroundTint="#B0C4DE "
+                    android:padding="6dp"
+                    android:src="@drawable/account_multiple" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Clientes" />
+            </LinearLayout>
 
         </LinearLayout>
 
