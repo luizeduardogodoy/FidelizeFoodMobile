@@ -8,6 +8,8 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -220,4 +222,21 @@ public class FidelizeMain extends Activity {
         new FidelizeMainTask().execute(ConnectAPITask.urlAPI, post);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+
+        if(item.getItemId() == R.id.menuLogout){
+            Toast.makeText(this, "Não faça isso", Toast.LENGTH_LONG).show();
+        }
+
+        return super.onMenuItemSelected(featureId, item);
+    }
 }
