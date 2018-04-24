@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.onesignal.OneSignal;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -41,7 +43,11 @@ public class MainActivity extends AppCompatActivity {
         String result = sharedPreferences.getString("ultimoUserLogado", "");
        // ultimoLogado.setText("Resultado --> " + result);
 
-
+        // OneSignal Initialization
+        OneSignal.startInit(this)
+                .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
+                .unsubscribeWhenNotificationsAreDisabled(true)
+                .init();
     }
 
     @Override
