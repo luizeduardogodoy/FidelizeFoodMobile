@@ -19,7 +19,7 @@
         android:layout_height="60dp"
         android:scaleType="fitXY"
         android:id="@+id/imgCarimboColuna01"
-        android:background="#F5FFFA"
+        android:background="#FFFFFF"
         />
 
     <TextView android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
             android:layout_height="60dp"
             android:scaleType="fitXY"
             android:id="@+id/imgCarimboColuna02"
-            android:background="#F5FFFA"
+            android:background="#FFFFFF"
             />
 
         <TextView android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
             android:layout_height="60dp"
             android:scaleType="fitXY"
             android:id="@+id/imgCarimboColuna03"
-            android:background="#F5FFFA"/>
+            android:background="#FFFFFF"/>
 
         <TextView android:layout_height="wrap_content"
             android:layout_width="wrap_content"
@@ -87,7 +87,7 @@
             android:layout_height="60dp"
             android:scaleType="fitXY"
             android:id="@+id/imgCarimboColuna04"
-            android:background="#F5FFFA"/>
+            android:background="#FFFFFF"/>
 
         <TextView android:layout_height="wrap_content"
             android:layout_width="wrap_content"
