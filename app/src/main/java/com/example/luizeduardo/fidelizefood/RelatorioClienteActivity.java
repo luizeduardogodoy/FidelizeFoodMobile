@@ -24,10 +24,12 @@ public class RelatorioClienteActivity extends AppCompatActivity {
 
         tableLayout = findViewById(R.id.tableC);
 
-        new ListarUsers().execute(ConnectAPITask.urlAPI, "req=listausers");
+        String post = "req=relClientes";
+        post += "&UsuarioID=" + UserSingleton.getInstance().getUser().getId();
+
+        new ListarUsers().execute(ConnectAPITask.urlAPI, post);
 
     }
-
 
     private class ListarUsers extends ConnectAPITask{
 
@@ -35,10 +37,8 @@ public class RelatorioClienteActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
-
             try {
                 JSONObject users = new JSONObject(s);
-
 
                 JSONArray array = users.getJSONArray("users");
 
@@ -47,10 +47,11 @@ public class RelatorioClienteActivity extends AppCompatActivity {
                     JSONObject object = array.getJSONObject(i);
 
                     TableRow tableRow = new TableRow(RelatorioClienteActivity.this);
+                    tableRow.setPadding(0,2,0,10);
 
                     TextView textView = new TextView(getBaseContext());
 
-                    textView.setText(object.getString("nome"));
+                    textView.setText(object.getString("nomecliente"));
                     textView.setTextColor(Color.BLACK);
 
                     TextView textView2 = new TextView(getBaseContext());
@@ -58,7 +59,7 @@ public class RelatorioClienteActivity extends AppCompatActivity {
                     textView2.setTextColor(Color.BLACK);
 
                     TextView textView3 = new TextView(getBaseContext());
-                    textView3.setText(object.getString("tipo"));
+                    textView3.setText(object.getString("ultima"));
                     textView3.setTextColor(Color.BLACK);
 
                     tableRow.addView(textView);

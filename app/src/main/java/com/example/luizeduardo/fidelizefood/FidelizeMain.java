@@ -213,7 +213,6 @@ public class FidelizeMain extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if(item.getItemId() == R.id.menuLogout){
-            Toast.makeText(this, "Não faça isso", Toast.LENGTH_LONG).show();
 
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
             alertDialog.setTitle("Fidelize - Sair do APP");
