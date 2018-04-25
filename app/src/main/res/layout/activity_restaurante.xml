@@ -12,10 +12,11 @@
         android:id="@+id/labelCadastroRest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:paddingBottom="10dp"
         android:text="Cadastro do Restaurante"
         android:textSize="19dp"
-        android:gravity="center"/>
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/editNomeRest"

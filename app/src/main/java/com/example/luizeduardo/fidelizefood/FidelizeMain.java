@@ -9,6 +9,7 @@ import android.media.Image;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +21,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.onesignal.OneSignal;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,10 +37,14 @@ public class FidelizeMain extends AppCompatActivity {
     ListView cartoes;
     ArrayAdapter<CampanhaParticipante> cartoesAdapter;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fidelize_main);
+
+
 
         TextView textView = findViewById(R.id.txtUserBemvindo);
 
@@ -118,6 +125,34 @@ public class FidelizeMain extends AppCompatActivity {
                 startActivity(campPartItem);
                 }
             });
+
+
+
+            // OneSignal Initialization, cria o user na api
+            OneSignal.startInit(this)
+                    .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
+                    .unsubscribeWhenNotificationsAreDisabled(true)
+                    .init();
+
+            OneSignal.idsAvailable(new OneSignal.IdsAvailableHandler() {
+
+
+                @Override
+                public void idsAvailable(String userId, String registrationId) {
+
+
+                    new FidelizeMainTask().execute(ConnectAPITask.urlAPI, "req=registraOneSignal&userIdOneSignal="+
+                            userId + "&UsuarioId="+ UserSingleton.getInstance().getUser().getId()
+                            + "");
+
+                    Log.d("debug", "User:" + userId);
+                    if (registrationId != null)
+                        Log.d("debug", "registrationId:" + registrationId);
+                }
+            });
+
+
+
 
             String post = "req=listarcampanhaspart&ID_USER="+id;
 

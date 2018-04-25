@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,11 +44,6 @@ public class MainActivity extends AppCompatActivity {
         String result = sharedPreferences.getString("ultimoUserLogado", "");
        // ultimoLogado.setText("Resultado --> " + result);
 
-        // OneSignal Initialization
-        OneSignal.startInit(this)
-                .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
-                .unsubscribeWhenNotificationsAreDisabled(true)
-                .init();
     }
 
     @Override

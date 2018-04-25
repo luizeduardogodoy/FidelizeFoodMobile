@@ -8,10 +8,21 @@
     tools:context="com.example.luizeduardo.fidelizefood.CarimboActivity">
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:text="Carimbo"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="3dp"
         android:text="Informe o código do Cliente:"
-        android:textSize="20dp" />
+        android:textSize="18dp" />
 
     <EditText
         android:id="@+id/editCPFCarimbo"
@@ -20,6 +31,13 @@
         android:ems="10"
         android:hint="CPF"
         android:inputType="number" />
+
+    <CheckBox
+        android:id="@+id/checkPermiteMaisCarimbo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Permitir mais de um carimbo por dia?" />
 
     <Button
         android:id="@+id/btnCarimbar"
