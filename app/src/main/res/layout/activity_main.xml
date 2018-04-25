@@ -4,54 +4,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#DCDCDC"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context="com.example.luizeduardo.fidelizefood.MainActivity"
-    android:background="#FFF0F5">
+    tools:context="com.example.luizeduardo.fidelizefood.MainActivity">
 
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="LOGIN"
-        android:textSize="20dp" />
+        android:orientation="vertical"
+        android:padding="15dp">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:contentDescription="User"
-        android:text="Usuário"
-        android:textStyle="bold"
-        android:textSize="17dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/txtUser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:hint="Informe seu email"
-        android:inputType="textPersonName" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fadeScrollbars="false"
+                android:gravity="center"
+                android:text="Login"
+                android:textSize="21dp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="Senha"
-        android:textStyle="bold"
-        android:textSize="17dp" />
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription="User"
+            android:text="Usuário:"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/txtSenha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:hint="Informe sua senha"
-        android:inputType="textPassword" />
+        <EditText
+            android:id="@+id/txtUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="Informe seu email"
+            android:inputType="textPersonName" />
 
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Senha:"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/txtSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="Informe sua senha"
+            android:inputType="textPassword" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,23 +76,20 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/button"
-            android:layout_width="150dp"
+            android:id="@+id/btnLogin"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:onClick="conexaoLogin"
-            android:text="Entrar" />
+            android:text="Entrar"
+            android:textColor="#EEEEEE" />
 
         <Button
             android:id="@+id/btnCadastrar"
-            android:layout_width="150dp"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:text="Cadastrar" />
+            android:text="Cadastrar"
+            android:textColor="#EEEEEE" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/txtUltimoUsuario"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="" />
 
 </LinearLayout>

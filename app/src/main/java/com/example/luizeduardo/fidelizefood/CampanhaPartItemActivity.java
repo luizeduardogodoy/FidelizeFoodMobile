@@ -27,8 +27,6 @@ public class CampanhaPartItemActivity extends AppCompatActivity {
 
     Bundle bundle;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

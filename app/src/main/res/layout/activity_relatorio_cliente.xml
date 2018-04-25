@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#DCDCDC"
     android:orientation="vertical">
 
 
@@ -15,42 +15,43 @@
         android:text="Relatório de Clientes"
         android:textSize="20dp"
         android:textStyle="bold" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none"
-        android:layout_weight="1">
-    <TableLayout
-        android:id="@+id/tableC"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:stretchColumns="2"
-        android:padding="10dp"
-            >
+        android:layout_weight="1"
+        android:scrollbars="none">
 
-        <TableRow
-            android:background="#DDDDDD">
-            <TextView
-                android:text="Nome"
-                android:textStyle="bold"
-                android:layout_width="135dp"
-                />
-            <TextView
-                android:text="Email"
-                android:layout_width="125dp"
-                android:textStyle="bold"
-                />
-            <TextView
-                android:text="Últ. Ref."
-                android:textStyle="bold"
+        <TableLayout
+            android:id="@+id/tableC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:stretchColumns="2">
 
-                />
-        </TableRow>
+            <TableRow android:background="#CCCCCC">
 
-        <View
-            android:layout_height="2dip"
-            android:background="#FF909090" />
+                <TextView
+                    android:layout_width="135dp"
+                    android:text="Nome"
+                    android:textStyle="bold" />
 
-         </TableLayout>
+                <TextView
+                    android:layout_width="125dp"
+                    android:text="Email"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:text="Últ. Ref."
+                    android:textStyle="bold"
+
+                    />
+            </TableRow>
+
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090" />
+
+        </TableLayout>
     </ScrollView>
 </LinearLayout>

@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.luizeduardo.fidelizefood.FidelizeMain"
+    android:background="#DCDCDC"
     android:orientation="vertical"
-    android:background="#FFF0F5">
+    tools:context="com.example.luizeduardo.fidelizefood.FidelizeMain">
 
     <TextView
         android:id="@+id/txtUserBemvindo"
@@ -38,8 +38,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
+
                 <ImageView
                     android:id="@+id/btnRestaurante"
                     android:layout_width="80dp"
@@ -59,15 +59,16 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginLeft="10dp">
-                    <ImageView
-                        android:id="@+id/btnCampanhas"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:background="#B0C4DE"
-                        android:padding="6dp"
-                        android:src="@drawable/hexagon" />
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/btnCampanhas"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="#B0C4DE"
+                    android:padding="6dp"
+                    android:src="@drawable/hexagon" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -77,18 +78,10 @@
 
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:orientation="vertical">
 
                 <ImageView
@@ -107,10 +100,19 @@
 
             </LinearLayout>
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+
                 android:orientation="vertical">
 
                 <ImageView
@@ -130,6 +132,52 @@
                     android:text="Clientes" />
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/btnPremio"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="#B0C4DE"
+                    android:padding="6dp"
+                    android:src="@drawable/seal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Premio" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/btnClientesPremiados"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+
+                    android:background="#708090"
+                    android:backgroundTint="#B0C4DE "
+                    android:padding="6dp"
+                    android:src="@drawable/check_outline" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Premiados" />
+            </LinearLayout>
+
+
         </LinearLayout>
 
 
@@ -144,15 +192,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="20dp"
             android:text="Fidelidades Ativas:"
-            android:textSize="16dp"
-            android:padding="20dp"/>
+            android:textSize="16dp" />
 
         <ListView
             android:id="@+id/listViewCartoes"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"/>
 
 
     </LinearLayout>

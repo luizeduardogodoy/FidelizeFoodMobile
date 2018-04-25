@@ -37,14 +37,10 @@ public class FidelizeMain extends AppCompatActivity {
     ListView cartoes;
     ArrayAdapter<CampanhaParticipante> cartoesAdapter;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fidelize_main);
-
-
 
         TextView textView = findViewById(R.id.txtUserBemvindo);
 

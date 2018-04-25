@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ultimoLogado = findViewById(R.id.txtUltimoUsuario);
+        //ultimoLogado = findViewById(R.id.txtUltimoUsuario);
 
         SharedPreferences sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
         String result = sharedPreferences.getString("ultimoUserLogado", "");

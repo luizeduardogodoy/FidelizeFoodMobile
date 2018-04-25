@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#DCDCDC"
     android:orientation="vertical"
     android:padding="10dp"
     tools:context="com.example.luizeduardo.fidelizefood.CampanhaActivity">
@@ -31,13 +32,13 @@
             android:text="Nome:"
             android:textAlignment="center" />
 
-    <EditText
-        android:id="@+id/editNomeCampanha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        <EditText
+            android:id="@+id/editNomeCampanha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-        android:hint="Nome"
-        android:inputType="textPersonName" />
+            android:hint="Nome"
+            android:inputType="textPersonName" />
     </LinearLayout>
 
     <LinearLayout
@@ -54,13 +55,13 @@
 
 
         <com.vicmikhailau.maskededittext.MaskedEditText
-        android:id="@+id/editInicioCampanha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Início"
-        app:mask="##/##/####"
-        android:inputType="date" />
+            android:id="@+id/editInicioCampanha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Início"
+            android:inputType="date"
+            app:mask="##/##/####" />
 
     </LinearLayout>
 
@@ -76,14 +77,14 @@
             android:text="Término:"
             android:textAlignment="center" />
 
-    <com.vicmikhailau.maskededittext.MaskedEditText
-        android:id="@+id/editTerminoCampanha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Término"
-        app:mask="##/##/####"
-        android:inputType="datetime" />
+        <com.vicmikhailau.maskededittext.MaskedEditText
+            android:id="@+id/editTerminoCampanha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Término"
+            android:inputType="datetime"
+            app:mask="##/##/####" />
     </LinearLayout>
 
     <LinearLayout
@@ -98,13 +99,13 @@
             android:text="Quantidade:"
             android:textAlignment="center" />
 
-    <EditText
-        android:id="@+id/editQtdeCamapanha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Quantidade"
-        android:inputType="number" />
+        <EditText
+            android:id="@+id/editQtdeCamapanha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Quantidade"
+            android:inputType="number" />
 
     </LinearLayout>
 
@@ -120,13 +121,13 @@
             android:text="Observação:"
             android:textAlignment="center" />
 
-    <EditText
-        android:id="@+id/editObsCampanha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Observação"
-        android:inputType="textMultiLine" />
+        <EditText
+            android:id="@+id/editObsCampanha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Observação"
+            android:inputType="textMultiLine" />
 
     </LinearLayout>
 

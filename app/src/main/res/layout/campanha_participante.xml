@@ -2,17 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#DEDEDE"
     android:orientation="horizontal"
-    android:padding="10dp"
-    android:layout_marginRight="25dp"
-    android:background="#EEEEEE"
-    >
+    android:padding="1dp">
 
     <ImageView
         android:id="@+id/campItemLogo"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_margin="5dp"
+
         android:scaleType="fitXY"
         android:src="@drawable/hexagon" />
 
@@ -20,32 +18,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/campItemNomeRest"
-            android:layout_width="match_parent"
+            android:layout_width="210dp"
             android:layout_height="wrap_content"
-            android:padding="5dp"
+            android:padding="3dp"
             android:text="TextView"
-            android:textSize="16dp"
             android:textColor="#708090"
-            android:textStyle="bold"/>
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/campItemLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
+            android:padding="3dp"
             android:text="TextView"
-            android:textColor="#778899"/>
+            android:textColor="#778899" />
     </LinearLayout>
 
     <ImageView
-        android:layout_width="45dp"
+        android:layout_width="wrap_content"
         android:layout_height="45dp"
-        android:src="@drawable/chevron_right"
         android:scaleType="fitXY"
-        />
+        android:src="@drawable/chevron_right" />
 </LinearLayout>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#DCDCDC"
     android:orientation="vertical"
     android:padding="10dp"
     tools:context="com.example.luizeduardo.fidelizefood.RestauranteActivity">
@@ -27,24 +28,26 @@
         android:inputType="textPersonName" />
 
 
-    <LinearLayout android:layout_height="wrap_content"
+    <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
-    <EditText
-        android:id="@+id/editCidadeRest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Cidade"
-        android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/editEstadoRest"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Estado"
-        android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/editCidadeRest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Cidade"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editEstadoRest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Estado"
+            android:inputType="textPersonName" />
     </LinearLayout>
 
     <EditText
