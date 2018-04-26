@@ -42,9 +42,11 @@
 
     <Button
         android:id="@+id/btnCarimbar"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="5dp"
         android:onClick="carimbar"
-        android:text="Salvar" />
+        android:text="Salvar"
+        android:textColor="#ffffff" />
 </LinearLayout>

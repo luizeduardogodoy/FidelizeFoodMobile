@@ -62,6 +62,7 @@ public class FidelizeMain extends AppCompatActivity {
             ImageView btnCarimbo = findViewById(R.id.btnCarimbo);
             ImageView btnCampanhas = findViewById(R.id.btnCampanhas);
             ImageView btnRestaurante = findViewById(R.id.btnRestaurante);
+            ImageView btnPremio = findViewById(R.id.btnPremio);
 
             btnRestaurante.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -91,12 +92,20 @@ public class FidelizeMain extends AppCompatActivity {
             btnCliente.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
                 Intent intent = new Intent(FidelizeMain.this, RelatorioClienteActivity.class);
                 startActivity(intent);
-
                 }
             });
+
+            btnPremio.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(FidelizeMain.this, RegistrarPremioActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+
         }
         else{
             cliente.setVisibility(View.VISIBLE);
