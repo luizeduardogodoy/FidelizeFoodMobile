@@ -41,7 +41,7 @@ public class CampanhaPartItemActivity extends AppCompatActivity {
 
         TextView txtNomeRest = findViewById(R.id.txtNomeRest);
 
-        txtNomeRest.setText(nomeRest + "- ID: " + idUsuarioCampanha);
+        txtNomeRest.setText(nomeRest );
 
         lstCampPart = findViewById(R.id.lstCampPart);
 

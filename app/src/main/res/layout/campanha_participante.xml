@@ -22,7 +22,7 @@
 
         <TextView
             android:id="@+id/campItemNomeRest"
-            android:layout_width="210dp"
+            android:layout_width="215dp"
             android:layout_height="wrap_content"
             android:padding="3dp"
             android:text="TextView"
@@ -40,8 +40,8 @@
     </LinearLayout>
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="12dp"
         android:scaleType="fitXY"
         android:src="@drawable/chevron_right" />

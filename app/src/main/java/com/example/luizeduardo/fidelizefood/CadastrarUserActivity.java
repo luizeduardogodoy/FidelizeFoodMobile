@@ -99,6 +99,10 @@ public class CadastrarUserActivity extends AppCompatActivity implements onTaskCo
 
             Toast.makeText(this, "Informar todos os campos!", Toast.LENGTH_LONG).show();
         }
+        else if(pass.getText().length() <= 5){
+            Toast.makeText(this, "A senha deve possuir 6 caracteres no mínimo", Toast.LENGTH_SHORT).show();
+
+        }
         else {
 
             String post = "req=cadastrouser&";
@@ -121,7 +125,7 @@ public class CadastrarUserActivity extends AppCompatActivity implements onTaskCo
 
             Toast.makeText(getBaseContext(), "EMAIL JÁ EXISTENTE!!", Toast.LENGTH_LONG).show();
             email.requestFocus();
-            email.setText("O email informado já existe");
+            email.setText("O email informado já esta sendo utilizado");
             email.setTextColor(Color.RED);
             btnCreateUser.setEnabled(false);
 
